@@ -181,8 +181,10 @@ test('homepage mobile discovery stays concise without hiding category routes', a
   // homepage (+61px, measured 12161 in CI).
   // Bumped again when the certified Retirement and Student Loan calculators got manifest entries
   // and started appearing in homepage discovery (two ~260px mobile cards; 12653 measured locally).
+  // Bumped again when Share-Safe File Check became a certified security tool (one more
+  // mobile card; 12900 measured in CI, +247px over the previous measurement).
   const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
-  expect(documentHeight).toBeLessThan(12900);
+  expect(documentHeight).toBeLessThan(13150);
 });
 
 test('gold-standard PDF page exposes usable mobile navigation', async ({ page }) => {

@@ -1,6 +1,6 @@
 {
   "generated": "postinstall",
-  "count": 133,
+  "count": 134,
   "tools": [
     {
       "id": "age-calculator",
@@ -6697,6 +6697,70 @@
       "certificationStatus": "CERTIFIED",
       "path": "/security/rlsproof",
       "entry": "/src/tools/security/rlsproof/"
+    },
+    {
+      "id": "share-safe-check",
+      "name": "Paylaşmadan Önce Dosya Kontrolü",
+      "nameEn": "Share-Safe File Check",
+      "category": "security",
+      "tier": 1,
+      "public": true,
+      "indexable": true,
+      "adsEligible": true,
+      "privacyMode": "LOCAL_ONLY",
+      "externalNetwork": false,
+      "syntheticData": "NONE",
+      "dataSource": "The file the visitor selects; it is parsed and rewritten in the browser (pdf-lib and JSZip from the site bundle)",
+      "limitations": "Checks known metadata and hidden-content locations only; a clean result is not a guarantee. Text under PDF black boxes is not detected (PDF Redact covers that). Encrypted files, HEIC and legacy .doc/.xls/.ppt are not supported. Office cleaning removes person, company and timeline properties only; tracked changes, comments, hidden sheets, notes, thumbnails and custom properties are reported, not changed. Images are cleaned losslessly; ICC profiles and JPEG orientation are kept. 50 MB per file.",
+      "keywords": {
+        "tr": [
+          "dosya meta verisi silme",
+          "fotoğraf konum bilgisi silme",
+          "exif silme",
+          "pdf meta veri temizleme",
+          "word izlenen değişiklikler kontrol",
+          "har dosyası token temizleme"
+        ],
+        "en": [
+          "remove metadata before sharing",
+          "remove gps from photo",
+          "check pdf metadata",
+          "remove exif data",
+          "find hidden sheets in excel",
+          "sanitize har file"
+        ]
+      },
+      "description": {
+        "tr": "Bir dosyayı göndermeden önce konum, yazar adı, eski PDF sürümleri, gizli sayfalar, izlenen değişiklikler ve token'ları bulun; temizleyin ve temiz kopyayı yeniden kontrol edin. Dosya tarayıcıdan çıkmaz.",
+        "en": "Before you send a file, find GPS location, author names, old PDF revisions, hidden sheets, tracked changes and tokens, clean them, and re-check the copy. The file stays in your browser."
+      },
+      "schema": {
+        "@type": "WebApplication",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      "ads": {
+        "sidebar": {
+          "enabled": true,
+          "size": "336x280"
+        }
+      },
+      "bundle": {
+        "lazyLoad": false
+      },
+      "relatedTools": [
+        "pdf/redact",
+        "pdf/split",
+        "security/rlsproof"
+      ],
+      "certificationStatus": "CERTIFIED",
+      "path": "/security/share-safe-check",
+      "entry": "/src/tools/security/share-safe-check/"
     },
     {
       "id": "ssl-checker",

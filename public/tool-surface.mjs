@@ -46,7 +46,7 @@ const CATEGORY_CONFIG = {
   },
   security: {
     label: 'Security tools', route: '/categories/security-tools.html', guide: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
-    tools: [['Password generator', '/tools/security/password-generator/'], ['Hash generator', '/tools/security/hash-generator/'], ['JWT decoder', '/tools/security/jwt-decoder/']],
+    tools: [['Share-safe file check', '/tools/security/share-safe-check/'], ['Password generator', '/tools/security/password-generator/'], ['Hash generator', '/tools/security/hash-generator/'], ['JWT decoder', '/tools/security/jwt-decoder/']],
     helper: 'Use security utilities for inspection and preparation; do not treat decoded or generated values as verified authorization.'
   },
   social: {

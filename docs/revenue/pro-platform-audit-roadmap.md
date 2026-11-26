@@ -19,7 +19,7 @@ NovaTools is a privacy-oriented browser utility platform implemented as a Vite m
 ### Current delivery map
 
 ```text
-GitHub: psycholog1sts/NovaTools (private)
+GitHub: metehancetinnn/NovaTools (private)
         |
         +-- main push ----------------------------+
         |                                         |

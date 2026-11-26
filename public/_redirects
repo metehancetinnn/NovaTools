@@ -27,6 +27,13 @@
 /author/editorial /author/novatools-editorial 301
 /author/editorial/ /author/novatools-editorial 301
 
+# Per-topic blog archives were retired (each would list one or two posts);
+# the blog hub lists every published post. The archive files no longer
+# exist, so this cannot collide with native .html handling.
+/blog/categories /blog/ 301
+/blog/categories/ /blog/ 301
+/blog/categories/* /blog/ 301
+
 # NOTE: category, blog, and guides clean URLs are likewise handled by
 # Cloudflare's native `.html`-stripping behavior and intentionally have no
 # rewrite rule here, for the same self-redirect-loop reason described above.

@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { blogArticleRoutes, blogHubPath, fallbackBlogLocale, supportedBlogLocales } from '../src/js/blog-routes.js';
-import { isPublishedBlogSlug } from '../src/js/blog-publication.js';
+import { isPublishedBlogSlug, publishedBlogSlugs } from '../src/js/blog-publication.js';
 
 const repoRoot = process.cwd();
 const distDir = path.join(repoRoot, 'dist');
@@ -229,7 +229,10 @@ function auditBlogManifestRoutes() {
       checked += 1;
     }
   }
-  if (checked < 20) fail(`Expected at least 20 blog article routes, checked ${checked}`);
+  // Guards against an accidentally empty blog. The floor follows the publication record,
+  // which deliberately withholds duplicated and out-of-scope articles (src/data/blog-publication.js).
+  const expectedMinimum = Math.max(1, publishedBlogSlugs().length);
+  if (checked < expectedMinimum) fail(`Expected at least ${expectedMinimum} blog article routes (one per published article), checked ${checked}`);
 }
 
 

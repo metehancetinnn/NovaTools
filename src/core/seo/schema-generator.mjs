@@ -177,7 +177,7 @@ export function generateOrganizationSchema() {
       height: 512
     },
     sameAs: [
-      'https://github.com/psycholog1sts/NovaTools'
+      'https://github.com/metehancetinnn/NovaTools'
     ]
   };
 }

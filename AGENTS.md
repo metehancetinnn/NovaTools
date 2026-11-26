@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Repository working rules for Codex contributors in `psycholog1sts/NovaTools`.
+Repository working rules for Codex contributors in `metehancetinnn/NovaTools`.
 
 ## Project role
 You are working on NovaTools, a privacy-first client-side utility tools website. Prioritize performance, accessibility, SEO, AdSense readiness, clean UX, route stability, i18n safety, and safe browser-only processing.

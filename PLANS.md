@@ -1,6 +1,6 @@
 # PLANS.md
 
-Template for phased Codex execution in `psycholog1sts/NovaTools`.
+Template for phased Codex execution in `metehancetinnn/NovaTools`.
 
 ## How to use this file
 - Duplicate the phase template for each new phase.

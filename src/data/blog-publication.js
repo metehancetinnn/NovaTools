@@ -21,8 +21,8 @@ export default {
       "sentences": 85,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "age-calculator-for-forms-and-records",
@@ -39,8 +39,8 @@ export default {
       "sentences": 82,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "base64-converter-common-use-cases",
@@ -75,8 +75,8 @@ export default {
       "sentences": 89,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "blog-publishing-tool-workflow",
@@ -192,8 +192,8 @@ export default {
       "sentences": 74,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "code-formatter-review-before-sharing",
@@ -273,8 +273,8 @@ export default {
       "sentences": 82,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "crypto-tax-guide",
@@ -282,8 +282,8 @@ export default {
       "sentences": 114,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "crypto-tax-records-prep-workflow",
@@ -354,8 +354,8 @@ export default {
       "sentences": 101,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "developer-debugging-tool-chain",
@@ -399,8 +399,8 @@ export default {
       "sentences": 122,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "file-merger-recombine-export-parts",
@@ -444,8 +444,8 @@ export default {
       "sentences": 148,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "five-minute-pdf-cleanup-workflow",
@@ -462,8 +462,8 @@ export default {
       "sentences": 92,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "health-insurance-marketplace",
@@ -471,8 +471,8 @@ export default {
       "sentences": 80,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "high-yield-savings-guide",
@@ -480,8 +480,8 @@ export default {
       "sentences": 69,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "html-entity-encoder-publishing-guide",
@@ -534,8 +534,8 @@ export default {
       "sentences": 105,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "islamic-finance-investing",
@@ -543,8 +543,8 @@ export default {
       "sentences": 118,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "jpg-vs-webp-for-small-websites",
@@ -606,8 +606,8 @@ export default {
       "sentences": 89,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "life-insurance-estimate-context",
@@ -705,8 +705,8 @@ export default {
       "sentences": 108,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "nft-tax-guide",
@@ -714,8 +714,8 @@ export default {
       "sentences": 89,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "number-base-converter-learning-guide",
@@ -831,8 +831,8 @@ export default {
       "sentences": 77,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "pmi-removal-guide",
@@ -840,8 +840,8 @@ export default {
       "sentences": 80,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "prepare-pdf-records-for-tax-season",
@@ -921,8 +921,8 @@ export default {
       "sentences": 93,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "roman-numerals-conversion-checklist",
@@ -1029,8 +1029,8 @@ export default {
       "sentences": 92,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "support-ticket-evidence-prep",
@@ -1047,8 +1047,8 @@ export default {
       "sentences": 57,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "tax-estimator-organize-documents-first",
@@ -1065,8 +1065,8 @@ export default {
       "sentences": 120,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "text-diff-for-reviewing-edits",
@@ -1182,8 +1182,8 @@ export default {
       "sentences": 88,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     }
   ]
 };

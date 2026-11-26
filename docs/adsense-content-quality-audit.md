@@ -308,7 +308,7 @@ Kaynak makalelerdeki 8 kelimelik düşüş bilinçli: her sayfaya basılan "Revi
 4. **Başlıklarda emoji:** `🔀 Image Flipper`, `📎 PDF Merge Tool`, `✂️ PDF Split Tool`. Zararsız ama profesyonel görünümü zayıflatıyor; dokunulmadı.
 5. **"Converter" kategori etiketi:** Yaş ve VKİ hesaplayıcıları çalışma zamanında "Free Online Converter Tool" başlığı alıyor (kategori = converters). Ayrı bir küçük düzeltme gerekiyor.
 6. **Ayrı PR'lar:**
-   - [#285](https://github.com/psycholog1sts/NovaTools/pull/285): Enhancer başlığında `nameEn` kullanımı. CI yeşil, onayınızı bekliyor.
+   - [#285](https://github.com/metehancetinnn/NovaTools/pull/285): Enhancer başlığında `nameEn` kullanımı. CI yeşil, onayınızı bekliyor.
    - Bu daldaki `toolName()` değişikliği aynı sorunu ilgili araç listeleri için de çözüyor; iki PR birbiriyle çakışmıyor.
 7. **Finans footer'ındaki "Metehan ÇETİN, LPC" ve `psk.dan.…` e-postası:** Kaynak HTML'de duruyor. Build global footer'ı koyduğu için canlıda görünmüyor, ama kaynakta bu iddia kalıyor.
 8. **Sitemap'in kaydedilmiş kopyası:** `lastmod` commit tarihinden geldiği için kaydedilen kopya bir commit geride kalıyor. CI her build'de yeniden ürettiği için canlıdaki doğru oluyor.

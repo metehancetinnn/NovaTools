@@ -4,7 +4,8 @@ import * as pdfLib from 'pdf-lib';
 import JSZip from 'jszip';
 import {
   detectFileType, parseTiff, scanJpeg, cleanJpeg, scanPng, cleanPng, scanWebp, cleanWebp,
-  scanPdf, cleanPdf, scanOoxml, cleanOoxml, scanText, cleanText, summarize
+  scanPdf, cleanPdf, scanOoxml, cleanOoxml, scanText, cleanText, summarize,
+  findHiddenText, hiddenTextFindings
 } from '../src/tools/security/share-safe-check/share-safe-core.mjs';
 
 const ids = (scan) => scan.findings.map((f) => f.id);
@@ -209,6 +210,86 @@ const log = 'deploy ok\nAWS_ACCESS_KEY_ID=AKIAABCDEFGHIJKLMNOP\ntoken ghp_abcdef
 assert.ok(ids(scanText(log)).includes('secret-aws-key'));
 assert.ok(ids(scanText(log)).includes('secret-github-token'));
 assert.deepEqual(scanText(cleanText(log)).findings, []);
+
+/* ---------- AI provider keys (FEAT-18) ---------- */
+// Fixture keys are assembled at runtime so no token-shaped literal is stored
+// in the repository (GitHub push protection flags those, fake or not).
+const fakeKey = (prefix, body) => `${prefix}${body}`;
+const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+const openAiFake = fakeKey('sk-proj-', `${alphabet}0123456789ABCD`);
+const anthropicFake = fakeKey('sk-ant-api03-', `${alphabet}0123456789-_ABCD`);
+const hfFake = fakeKey('hf_', `${alphabet}ABCDEFGH`);
+const aiLog = [
+  `OPENAI_API_KEY=${openAiFake}`,
+  `ANTHROPIC_API_KEY=${anthropicFake}`,
+  `HF_TOKEN=${hfFake}`,
+  'note: the word sk-learn is not a key'
+].join('\n');
+const aiIds = ids(scanText(aiLog));
+assert.ok(aiIds.includes('secret-openai-key'), 'OpenAI keys are detected');
+assert.ok(aiIds.includes('secret-anthropic-key'), 'Anthropic keys are detected');
+assert.ok(aiIds.includes('secret-huggingface-token'), 'Hugging Face tokens are detected');
+const aiClean = cleanText(aiLog);
+for (const fake of [openAiFake, anthropicFake, hfFake]) assert.ok(!aiClean.includes(fake), 'every key is redacted');
+assert.match(aiClean, /sk-learn is not a key/, 'ordinary words are left alone');
+assert.deepEqual(scanText(aiClean).findings, []);
+assert.equal(scanText(anthropicFake).findings.filter((f) => f.id === 'secret-openai-key').length, 0,
+  'an Anthropic key is not double-reported as an OpenAI key');
+
+/* ---------- text hidden under boxes (FEAT-01) ---------- */
+// A 120x40 white page image. Region A has dark glyph strokes (visible text),
+// region B is a solid black box, region C is solid white (white-out), region D
+// is a solid mid-grey box.
+function pageImage(width, height) {
+  const data = new Uint8ClampedArray(width * height * 4).fill(255);
+  const paint = (x0, y0, x1, y1, v) => {
+    for (let y = y0; y < y1; y += 1) for (let x = x0; x < x1; x += 1) {
+      const i = (y * width + x) * 4;
+      data[i] = v; data[i + 1] = v; data[i + 2] = v; data[i + 3] = 255;
+    }
+  };
+  return { width, height, data, paint };
+}
+const img = pageImage(120, 40);
+for (let x = 2; x < 28; x += 3) img.paint(x, 4, x + 1, 14, 0); // glyph-like strokes
+img.paint(32, 4, 60, 14, 0); // black box
+img.paint(90, 4, 118, 14, 128); // grey box
+const items = [
+  { str: 'Visible words', x: 2, y: 4, width: 26, height: 10 },
+  { str: 'Jane Doe 12345678901', x: 32, y: 4, width: 28, height: 10 },
+  { str: 'whited out salary 95,000', x: 62, y: 4, width: 26, height: 10 },
+  { str: 'grey box secret', x: 90, y: 4, width: 28, height: 10 },
+  { str: '   ', x: 32, y: 20, width: 10, height: 10 },
+  { str: 'x', x: 200, y: 200, width: 0, height: 0 }
+];
+const hidden = findHiddenText(items, img);
+assert.deepEqual(hidden.map((h) => h.text), ['Jane Doe 12345678901', 'whited out salary 95,000', 'grey box secret']);
+assert.deepEqual(hidden.map((h) => h.cover), ['dark', 'light', 'colored']);
+assert.equal(findHiddenText([items[0]], img).length, 0, 'text with visible glyphs is not flagged');
+// The usual failed redaction: one text run whose label is visible and whose
+// value sits under the box. Only the covered words are reported.
+const partly = findHiddenText([{ str: 'Visible words Jane Doe', x: 2, y: 4, width: 58, height: 10 }], img);
+assert.deepEqual(partly.map((h) => [h.text, h.cover]), [['Jane Doe', 'dark']]);
+// A word estimate that drifts onto blank space next to visible text is not
+// reported as white-out (word-level hits are dark-only).
+const sparse = pageImage(120, 40);
+for (let x = 2; x < 24; x += 3) sparse.paint(x, 4, x + 1, 14, 0);
+const drift = findHiddenText([{ str: 'Visible words gap', x: 2, y: 4, width: 32, height: 10 }], sparse);
+assert.deepEqual(drift, [], 'blank space beside visible words is not a hit');
+
+const hiddenFinding = hiddenTextFindings([{ page: 2, hits: hidden }], { pagesChecked: 3, totalPages: 3 });
+assert.equal(hiddenFinding.length, 1);
+assert.equal(hiddenFinding[0].id, 'pdf-hidden-text');
+assert.equal(hiddenFinding[0].severity, 'high');
+assert.equal(hiddenFinding[0].cleanable, false);
+assert.match(hiddenFinding[0].detail, /Page 2/);
+assert.match(hiddenFinding[0].detail, /Jane Doe/);
+assert.match(hiddenFinding[0].fix, /PDF Redact/);
+assert.deepEqual(hiddenTextFindings([], { pagesChecked: 3, totalPages: 3 }), []);
+const partial = hiddenTextFindings([], { pagesChecked: 60, totalPages: 80 });
+assert.equal(partial.length, 1, 'an incomplete check says so instead of implying the file is clean');
+assert.equal(partial[0].id, 'pdf-hidden-text-partial');
+assert.match(partial[0].detail, /60 of 80/);
 
 /* ---------- page contract ---------- */
 const page$ = readFileSync('src/tools/security/share-safe-check/index.html', 'utf8');

@@ -11,7 +11,7 @@
   "externalNetwork": false,
   "syntheticData": "NONE",
   "dataSource": "The file the visitor selects, read and rewritten in the browser",
-  "limitations": "Checks known metadata and hidden-content locations; does not detect text under PDF black boxes (see PDF Redact), cannot read encrypted files, HEIC or legacy .doc/.xls/.ppt. Office content issues are reported, not changed.",
+  "limitations": "Checks known metadata and hidden-content locations; reports but does not remove text under PDF black boxes (see PDF Redact), cannot read encrypted files, HEIC or legacy .doc/.xls/.ppt. Office content issues are reported, not changed.",
   "keywords": {
     "tr": ["dosya meta verisi silme", "fotoğraf konum bilgisi silme", "exif silme", "pdf meta veri temizleme", "word izlenen değişiklikler kontrol", "har dosyası token temizleme"],
     "en": ["remove metadata before sharing", "remove gps from photo", "check pdf metadata", "remove exif data", "find hidden sheets in excel", "sanitize har file"]

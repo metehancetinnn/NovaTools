@@ -6711,7 +6711,7 @@
       "externalNetwork": false,
       "syntheticData": "NONE",
       "dataSource": "The file the visitor selects; it is parsed and rewritten in the browser (pdf-lib and JSZip from the site bundle)",
-      "limitations": "Checks known metadata and hidden-content locations only; a clean result is not a guarantee. Text under PDF black boxes is not detected (PDF Redact covers that). Encrypted files, HEIC and legacy .doc/.xls/.ppt are not supported. Office cleaning removes person, company and timeline properties only; tracked changes, comments, hidden sheets, notes, thumbnails and custom properties are reported, not changed. Images are cleaned losslessly; ICC profiles and JPEG orientation are kept. 50 MB per file.",
+      "limitations": "Checks known metadata and hidden-content locations only; a clean result is not a guarantee. Text under PDF black boxes or white-out is reported for the first 60 pages but not removed (PDF Redact removes it); word positions are estimated, so unusual layouts can be missed. Encrypted files, HEIC and legacy .doc/.xls/.ppt are not supported. Office cleaning removes person, company and timeline properties only; tracked changes, comments, hidden sheets, notes, thumbnails and custom properties are reported, not changed. Images are cleaned losslessly; ICC profiles and JPEG orientation are kept. 50 MB per file.",
       "keywords": {
         "tr": [
           "dosya meta verisi silme",

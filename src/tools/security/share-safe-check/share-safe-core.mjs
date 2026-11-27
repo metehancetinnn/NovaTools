@@ -524,12 +524,8 @@ export async function scanPdf(bytes, pdfLib) {
     facts.pages = doc.getPageCount();
   }
 
-  findings.push({
-    id: 'pdf-redaction-hint', severity: 'low', cleanable: false,
-    title: 'Hidden text under black boxes is not checked here',
-    detail: 'If you blacked out parts of this PDF, open it in the PDF Redact & PII Check tool, which reads the text layer and shows whether the covered text is still there.'
-  });
-
+  // Text hidden under boxes needs the pages rendered, so the page controller
+  // runs that check (findHiddenText below) and appends its findings.
   return { kind: 'pdf', findings: dedupe(findings), facts };
 }
 
@@ -785,6 +781,10 @@ const SECRET_PATTERNS = [
   { id: 'stripe-key', title: 'Stripe secret key', re: /\b[sr]k_live_[A-Za-z0-9]{16,}\b/g },
   { id: 'slack-token', title: 'Slack token', re: /\bxox[abposr]-[A-Za-z0-9-]{10,}\b/g },
   { id: 'google-key', title: 'Google API key', re: /\bAIza[0-9A-Za-z_-]{35}\b/g },
+  // AI provider keys end up in .env files, agent/MCP configs and pasted logs.
+  { id: 'anthropic-key', title: 'Anthropic API key', re: /\bsk-ant-(?:api|admin)\d{2}-[A-Za-z0-9_-]{32,}/g },
+  { id: 'openai-key', title: 'OpenAI API key', re: /\bsk-(?!ant-)(?:proj-|svcacct-|admin-)?[A-Za-z0-9_-]{32,}/g },
+  { id: 'huggingface-token', title: 'Hugging Face token', re: /\bhf_[A-Za-z0-9]{30,}\b/g },
   { id: 'url-secret', title: 'Secret in a URL', re: /([?&#](?:access_token|id_token|refresh_token|token|api_key|apikey|key|secret|password|pwd|code|sig|signature|session|sessionid|auth)=)([^&#\s"'[\]]{6,})/gi }
 ];
 
@@ -876,6 +876,119 @@ export function cleanText(text, kind = 'text') {
     out = out.replace(pattern.re, (...m) => (pattern.id === 'url-secret' ? `${m[1]}${REDACTED}` : pattern.id === 'bearer' ? `Bearer ${REDACTED}` : REDACTED));
   }
   return out;
+}
+
+/* ------------------------------------------------------------------ */
+/* PDF text that is in the file but not visible on the page             */
+/* ------------------------------------------------------------------ */
+
+// Drawing a black (or white) box over text hides it on screen but leaves it in
+// the file, where it can be selected, copied or extracted — the failure behind
+// most published redaction leaks. The page controller renders each page and
+// passes the text runs with their boxes in canvas pixels; a run whose box shows
+// no visible contrast (no glyph strokes) is text the reader cannot see.
+const MAX_SAMPLES_PER_RUN = 4096;
+const VISIBLE_CONTRAST = 24; // luminance range (0-255) below which nothing is visible
+
+/**
+ * @param {{str: string, x: number, y: number, width: number, height: number}[]} items
+ *   text runs; x/y is the top-left corner in image pixels
+ * @param {{width: number, height: number, data: Uint8ClampedArray}} image RGBA pixels
+ * @returns {{text: string, cover: 'dark'|'light'|'colored'}[]}
+ */
+function regionCover(image, left, top, right, bottom) {
+  const x0 = Math.max(0, Math.floor(left));
+  const y0 = Math.max(0, Math.floor(top));
+  const x1 = Math.min(image.width, Math.ceil(right));
+  const y1 = Math.min(image.height, Math.ceil(bottom));
+  const w = x1 - x0;
+  const h = y1 - y0;
+  if (w < 2 || h < 2) return null;
+  const step = Math.max(1, Math.ceil(Math.sqrt((w * h) / MAX_SAMPLES_PER_RUN)));
+  let min = 255;
+  let max = 0;
+  let sum = 0;
+  let n = 0;
+  for (let y = y0; y < y1; y += step) {
+    for (let x = x0; x < x1; x += step) {
+      const i = (y * image.width + x) * 4;
+      const lum = 0.2126 * image.data[i] + 0.7152 * image.data[i + 1] + 0.0722 * image.data[i + 2];
+      if (lum < min) min = lum;
+      if (lum > max) max = lum;
+      sum += lum;
+      n += 1;
+    }
+  }
+  if (!n || max - min >= VISIBLE_CONTRAST) return null;
+  const mean = sum / n;
+  return mean < 60 ? 'dark' : mean > 200 ? 'light' : 'colored';
+}
+
+export function findHiddenText(items, image) {
+  const hits = [];
+  for (const item of items) {
+    const str = String(item.str || '');
+    if (!str.trim() || item.width <= 0) continue;
+    const whole = regionCover(image, item.x, item.y, item.x + item.width, item.y + item.height);
+    if (whole) {
+      hits.push({ text: str.replace(/\s+/g, ' ').trim(), cover: whole });
+      continue;
+    }
+    // A redaction box usually covers part of a run ("Name: [box]"), so each
+    // word is tested on its own. Word positions are estimated in proportion to
+    // character index (the text layer gives one box per run), and each window
+    // is narrowed so a neighbouring visible glyph does not mask a covered word.
+    // An estimate can drift onto the blank gap between words, which would look
+    // like white-out, so word-level hits count only when the cover is dark.
+    const perChar = item.width / str.length;
+    let run = null;
+    const flush = () => { if (run) hits.push(run); run = null; };
+    for (const word of str.matchAll(/\S+/g)) {
+      const left = item.x + word.index * perChar;
+      const width = word[0].length * perChar;
+      const inset = Math.min(width * 0.12, perChar);
+      const cover = regionCover(image, left + inset, item.y, left + width - inset, item.y + item.height) === 'dark' ? 'dark' : null;
+      if (cover && run) run.text += ` ${word[0]}`;
+      else if (cover) { flush(); run = { text: word[0], cover }; }
+      else flush();
+    }
+    flush();
+  }
+  return hits;
+}
+
+const COVER_LABEL = { dark: 'under a dark box', light: 'on a blank or whited-out area', colored: 'under a solid box' };
+
+/**
+ * @param {{page: number, hits: ReturnType<typeof findHiddenText>}[]} pages pages with at least one hit
+ * @param {{pagesChecked: number, totalPages: number}} coverage
+ */
+export function hiddenTextFindings(pages, { pagesChecked, totalPages }) {
+  const findings = [];
+  const withHits = pages.filter((p) => p.hits.length);
+  if (withHits.length) {
+    const runs = withHits.reduce((n, p) => n + p.hits.length, 0);
+    const clip = (text) => (text.length > 80 ? `${text.slice(0, 77)}…` : text);
+    const examples = withHits.slice(0, 5).map((p) => {
+      const listed = p.hits.slice(0, 4).map((hit) => `“${clip(hit.text)}” ${COVER_LABEL[hit.cover]}`).join('; ');
+      return `Page ${p.page}: ${listed}${p.hits.length > 4 ? `; +${p.hits.length - 4} more` : ''}.`;
+    });
+    findings.push({
+      id: 'pdf-hidden-text', severity: 'high', cleanable: false,
+      title: `Text that is in the file but not visible (${runs} run${runs === 1 ? '' : 's'} on ${withHits.length} page${withHits.length === 1 ? '' : 's'})`,
+      detail: `${examples.join(' ')}${withHits.length > 5 ? ` …and ${withHits.length - 5} more page(s).` : ''} Anyone can select, copy or extract this text even though the page shows a box or nothing at all. A box drawn over text is not redaction. Sometimes this is harmless (invisible search text from a scanner, or a white-on-white template label), so read what is listed.`,
+      fix: 'Not removed here. Run the file through PDF Redact, which rebuilds each page as an image so no hidden text survives, then check the result here again.'
+    });
+  }
+  if (pagesChecked < totalPages) {
+    findings.push({
+      id: 'pdf-hidden-text-partial', severity: 'medium', cleanable: false,
+      title: 'Only part of the document was checked for hidden text',
+      detail: `Pages were rendered and checked for hidden text on ${pagesChecked} of ${totalPages} pages; the rest were not checked.`,
+      fix: 'Split the PDF and check the remaining pages separately.'
+    });
+  }
+  return findings;
 }
 
 /* ------------------------------------------------------------------ */

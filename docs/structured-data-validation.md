@@ -1,6 +1,6 @@
 # Structured Data Graph Validation Report
 
-Generated: 2026-11-27T09:42:34.628Z
+Generated: 2026-11-27T09:56:15.164Z
 
 ## Scope
 

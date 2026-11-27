@@ -12,7 +12,8 @@
 import {
   MAX_FILE_BYTES, detectFileType, sortFindings, summarize,
   scanJpeg, cleanJpeg, scanPng, cleanPng, scanWebp, cleanWebp,
-  scanPdf, cleanPdf, scanOoxml, cleanOoxml, scanText, cleanText
+  scanPdf, cleanPdf, scanOoxml, cleanOoxml, scanText, cleanText,
+  findHiddenText, hiddenTextFindings
 } from './share-safe-core.mjs';
 
 const $ = (id) => document.getElementById(id);
@@ -35,6 +36,91 @@ let downloadUrl = null;
 
 const loadPdfLib = () => import('pdf-lib');
 const loadJsZip = () => import('jszip').then((m) => m.default || m);
+
+// pdf.js is served from this site (/vendor/pdfjs/, copied from pdfjs-dist at
+// build time), the same copy PDF Redact uses. It renders pages for the hidden
+// text check; the PDF bytes are handed to it in memory and never sent anywhere.
+const PDFJS_BASE = '/vendor/pdfjs/';
+const HIDDEN_TEXT_MAX_PAGES = 60;
+const HIDDEN_TEXT_SCALE = 1.5;
+let pdfjsPending = null;
+function loadPdfJs() {
+  pdfjsPending = pdfjsPending || import(/* @vite-ignore */ `${PDFJS_BASE}pdf.min.mjs`)
+    .then((lib) => {
+      lib.GlobalWorkerOptions.workerSrc = `${PDFJS_BASE}pdf.worker.min.mjs`;
+      return lib;
+    })
+    .catch((error) => { pdfjsPending = null; throw error; });
+  return pdfjsPending;
+}
+
+/** Renders each page and lists text runs that sit where nothing is visible. */
+async function checkHiddenText(bytes, onProgress) {
+  const pdfjs = await loadPdfJs();
+  const task = pdfjs.getDocument({
+    data: bytes.slice(), // pdf.js takes ownership of the buffer it is given
+    isEvalSupported: false,
+    cMapUrl: `${PDFJS_BASE}cmaps/`,
+    cMapPacked: true,
+    standardFontDataUrl: `${PDFJS_BASE}standard_fonts/`,
+    wasmUrl: `${PDFJS_BASE}wasm/`,
+    iccUrl: `${PDFJS_BASE}iccs/`
+  });
+  try {
+    const doc = await task.promise;
+    const totalPages = doc.numPages;
+    const pagesChecked = Math.min(totalPages, HIDDEN_TEXT_MAX_PAGES);
+    const pages = [];
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d', { alpha: false, willReadFrequently: true });
+    for (let number = 1; number <= pagesChecked; number += 1) {
+      onProgress?.(number, pagesChecked);
+      const page = await doc.getPage(number);
+      const viewport = page.getViewport({ scale: HIDDEN_TEXT_SCALE });
+      canvas.width = Math.ceil(viewport.width);
+      canvas.height = Math.ceil(viewport.height);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvas, canvasContext: ctx, viewport, intent: 'print', annotationMode: pdfjs.AnnotationMode.ENABLE }).promise;
+      const content = await page.getTextContent();
+      const items = content.items
+        .filter((item) => typeof item.str === 'string' && item.str.trim())
+        .map((item) => {
+          const tx = pdfjs.Util.transform(viewport.transform, item.transform);
+          const fontHeight = Math.hypot(tx[2], tx[3]);
+          return { str: item.str, x: tx[4], y: tx[5] - fontHeight * 0.9, width: item.width * HIDDEN_TEXT_SCALE, height: fontHeight * 1.1 };
+        });
+      const image = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const hits = findHiddenText(items, image);
+      if (hits.length) pages.push({ page: number, hits });
+      page.cleanup();
+    }
+    canvas.width = 0;
+    canvas.height = 0;
+    return hiddenTextFindings(pages, { pagesChecked, totalPages });
+  } finally {
+    // In pdf.js 6 the loading task owns the document and its worker.
+    await task.destroy();
+  }
+}
+
+/** Structural scan, plus the rendered hidden-text check for PDFs. */
+async function fullScan(bytes, kind) {
+  const scan = await scanBytes(bytes, kind);
+  if (scan && kind === 'pdf') {
+    try {
+      scan.findings.push(...await checkHiddenText(bytes, (n, total) => setStatus(`Checking page ${n} of ${total} for text hidden under boxes…`)));
+    } catch (error) {
+      scan.findings.push({
+        id: 'pdf-hidden-text-error', severity: 'medium', cleanable: false,
+        title: 'The hidden-text check could not run',
+        detail: `Pages could not be rendered (${error.message}), so text hidden under boxes was not checked.`,
+        fix: 'Open the file in PDF Redact, which renders every page, or try another browser.'
+      });
+    }
+  }
+  return scan;
+}
 
 function setStatus(message, isError = false) {
   const el = $('scanStatus');
@@ -94,7 +180,9 @@ function renderFindings(listEl, findings) {
     detail.textContent = finding.detail;
     const fix = document.createElement('p');
     fix.className = 'finding__fix';
-    fix.textContent = finding.cleanable ? 'Removed by “Create cleaned copy”.' : 'Not changed automatically — fix it in the app that made the file.';
+    fix.textContent = finding.cleanable
+      ? 'Removed by “Create cleaned copy”.'
+      : finding.fix || 'Not changed automatically — fix it in the app that made the file.';
     body.append(title, detail, fix);
     if (finding.location) {
       const map = document.createElement('a');
@@ -142,7 +230,7 @@ async function handleFile(file) {
       setStatus('This file type is not supported. Supported: PDF, JPEG, PNG, WebP, Word (.docx), Excel (.xlsx), PowerPoint (.pptx), HAR/JSON and text or log files.', true);
       return;
     }
-    const scan = await scanBytes(bytes, kind);
+    const scan = await fullScan(bytes, kind);
     current = { file, bytes, kind, scan };
     $('fileMeta').textContent = `${file.name} · ${TYPE_LABEL[kind] || kind} · ${formatBytes(file.size)}`;
     $('scanSummary').textContent = summaryText(scan.findings);
@@ -167,7 +255,7 @@ async function handleClean() {
   setStatus('Creating the cleaned copy and checking it again…');
   try {
     const cleaned = await cleanBytes(current.bytes, current.kind);
-    const after = await scanBytes(cleaned, current.kind);
+    const after = await fullScan(cleaned, current.kind);
     const beforeCleanable = current.scan.findings.filter((f) => f.cleanable);
     const stillThere = after.findings.filter((f) => beforeCleanable.some((b) => b.id === f.id));
     $('resultSection').dataset.verified = stillThere.length ? 'false' : 'true';

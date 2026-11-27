@@ -49,10 +49,6 @@ export function renderMegaHeader() {
           </div>
         </details>
         <details class="nt-mega-menu">
-          <summary>Guides</summary>
-          <div class="nt-mega-panel"><a href="/guides/complete-pdf-workflow.html">PDF workflows</a><a href="/guides/articles/regex-cheat-sheet-web-developers.html">Developer guides</a><a href="/guides/articles/color-contrast-accessibility-wcag-22.html">Accessibility</a></div>
-        </details>
-        <details class="nt-mega-menu">
           <summary>Blog</summary>
           <div class="nt-mega-panel">${latestPosts.map((post) => `<a href="/blog/articles/${escapeHtml(post.slug)}.html">${escapeHtml(post.title)}</a>`).join('')}<a href="/blog/index.html">All posts</a></div>
         </details>
@@ -72,7 +68,7 @@ export function renderFourColumnFooter() {
   return `<footer class="nt-footer" role="contentinfo">
     <div class="nt-footer__grid">
       <nav aria-label="Tools by category"><h2>Tools by Category</h2><ul>${groups.map((group) => `<li><a href="${CATEGORY_ROUTES[group.category] || '/categories/index.html'}">${escapeHtml(categoryLabel(group.category))} (${group.count})</a></li>`).join('')}</ul></nav>
-      <nav aria-label="Guides and resources"><h2>Guides & Resources</h2><ul><li><a href="/blog/index.html">Blog</a></li><li><a href="/guides/complete-pdf-workflow.html">PDF workflow guide</a></li><li><a href="/site-map/topical.html">Topic map</a></li></ul></nav>
+      <nav aria-label="Guides and resources"><h2>Guides & Resources</h2><ul><li><a href="/blog/index.html">Blog</a></li><li><a href="/categories/">All verified tools</a></li></ul></nav>
       <nav aria-label="Company"><h2>Company</h2><ul><li><a href="/about-us.html">About</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/author/metehan-cetin.html">Team</a></li><li><a href="/contact.html?topic=careers">Careers</a></li></ul></nav>
       <nav aria-label="Legal"><h2>Legal</h2><ul><li><a href="/privacy-policy.html">Privacy</a></li><li><a href="/terms-of-service.html">Terms</a></li><li><a href="/disclaimer.html">Disclaimer</a></li><li><a href="/cookie-policy.html">Cookie Policy</a></li></ul></nav>
     </div>

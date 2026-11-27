@@ -73,3 +73,12 @@
 
 /*.avif
   Cache-Control: public, max-age=31536000, immutable
+
+# /ar/* is a client-translated copy of the English pages (post-build-fix.mjs
+# copies the built HTML; the static text is English) and every copy declared
+# itself canonical, so ~200 near-duplicates were indexable. The language
+# switcher still uses these routes; they are kept out of the index. The
+# detach drops the "index, follow" that the /* rule above already attached.
+/ar/*
+  ! X-Robots-Tag
+  X-Robots-Tag: noindex, follow

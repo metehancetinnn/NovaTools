@@ -164,38 +164,60 @@ const popularTasks = [
   { key: 'passwordGenerator', label: 'Password Generator', slug: 'security/password-generator', icon: 'shield' }
 ];
 
+// The homepage leads with one job: getting a file ready to send. This is a fixed,
+// ordered shortlist, not "every certified tool": listing the whole catalogue made
+// the page ~250px taller on mobile with every tool that passed certification.
+// The full catalogue lives in the category hubs. Keys are new (not in the
+// locale files), so the English text below is what every language shows.
+const FEATURED_TOOL_LIMIT = 6;
 const featuredTools = [
   {
-    key: 'pdfMerge',
-    slug: 'pdf/merge',
-    name: 'PDF Merge',
-    description: 'Combine multiple PDF files into one organized document.',
-    category: 'PDF Tools',
+    key: 'shareSafeCheck',
+    slug: 'security/share-safe-check',
+    name: 'Share-Safe File Check',
+    description: 'See the location, names, earlier revisions, comments and tokens a photo, PDF, Office file or HAR log carries, then download a cleaned copy that is re-checked.',
+    category: 'security',
+    icon: 'shield'
+  },
+  {
+    key: 'pdfRedactShare',
+    slug: 'pdf/redact',
+    name: 'PDF Redact & PII Check',
+    description: 'Find emails, phone numbers and IBAN-like strings in a PDF and black out what should not leave with it.',
+    category: 'pdf',
     icon: 'file-text'
   },
   {
-    key: 'imageCompress',
+    key: 'pdfSplitShare',
+    slug: 'pdf/split',
+    name: 'PDF Splitter',
+    description: 'Send only the pages the recipient needs instead of the whole document.',
+    category: 'pdf',
+    icon: 'file-text'
+  },
+  {
+    key: 'pdfCompressShare',
+    slug: 'pdf/compress',
+    name: 'PDF Compressor',
+    description: 'Get a PDF under an email or upload size limit, with the before and after size shown.',
+    category: 'pdf',
+    icon: 'file-text'
+  },
+  {
+    key: 'imageCompressShare',
     slug: 'image/compress',
     name: 'Image Compressor',
-    description: 'Reduce image file sizes for web and email workflows.',
-    category: 'Image Tools',
+    description: 'Shrink photos and screenshots before attaching or uploading them.',
+    category: 'image',
     icon: 'image'
   },
   {
-    key: 'jsonFormatter',
-    slug: 'dev/json-formatter',
-    name: 'JSON Formatter',
-    description: 'Format, read and validate JSON data before sharing.',
-    category: 'Developer Tools',
-    icon: 'code'
-  },
-  {
-    key: 'liveExchange',
-    slug: 'finance/live-exchange',
-    name: 'Live Exchange Converter',
-    description: 'Convert currency estimates with live-data and cached fallback handling.',
-    category: 'Finance Tools',
-    icon: 'trending-up'
+    key: 'pdfMergeShare',
+    slug: 'pdf/merge',
+    name: 'PDF Merger',
+    description: 'Combine scans and attachments into one file in the order you choose.',
+    category: 'pdf',
+    icon: 'file-text'
   }
 ];
 
@@ -262,60 +284,65 @@ const categoryPopularTools = {
   ]
 };
 
+// Each card names the article it actually opens. The previous three cards had
+// three different titles ("Tool selection map", "Compress images checklist",
+// "Base64 use cases") and all linked to the same article.
 const blogPosts = [
   {
-    key: 'toolSelection',
-    title: 'Tool selection map for new users',
-    excerpt: 'Choose the right category and tool quickly when you start a new task.',
-    category: 'Workflow',
+    key: 'browserVsDesktopPrivacy',
+    title: 'Browser-based tools vs desktop software: a privacy comparison',
+    excerpt: 'When a browser tool keeps a file on your device, when it does not, and when desktop software is the safer choice.',
+    category: 'Privacy',
     href: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
     image: '/images/blog-covers/workflow-planning.svg',
     minutes: '5 min'
   },
   {
-    key: 'imageQuality',
-    title: 'Compress images for web quality checklist',
-    excerpt: 'Keep quality, format and page speed checks in view while reducing image size.',
-    category: 'Image',
-    href: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
+    key: 'editPdfWithoutAcrobat',
+    title: 'How to edit a PDF without Adobe Acrobat',
+    excerpt: 'Pick a free method by the change you need, from page organisation to annotation, and check the file before you hand it off.',
+    category: 'PDF',
+    href: '/blog/articles/edit-pdf-without-adobe-acrobat-free-methods.html',
     image: '/images/blog-covers/image-workflow.svg',
     minutes: '6 min'
   },
   {
-    key: 'base64Uses',
-    title: 'Base64 converter common use cases',
-    excerpt: 'Encoding, decoding and pre-share checks for developer workflows.',
+    key: 'jwtStructure',
+    title: 'Understanding JSON Web Tokens',
+    excerpt: 'Anyone can decode a JWT payload. What the three parts contain, where tokens get exposed, and how to debug them safely.',
     category: 'Developer',
-    href: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
+    href: '/blog/articles/understanding-json-web-tokens-structure-security.html',
     image: '/images/blog-covers/developer-utilities.svg',
     minutes: '4 min'
   }
 ];
 
+// Tasks people do before a file leaves their hands. Each step opens a different,
+// working page: the check, the follow-up tool, then the hub with the rest.
 const workflowCards = [
   {
-    key: 'pdfEmail',
-    title: 'Prepare a PDF for email',
-    description: 'Compress the file, confirm readability, then use the PDF checklist before sending.',
-    tool: ['Compress PDF', 'pdf/compress'],
-    guide: ['PDF email checklist', '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html'],
+    key: 'contractPdf',
+    title: 'Send a contract or CV as a PDF',
+    description: 'Check it for author names, earlier revisions and comments, black out personal numbers, then send a cleaned copy.',
+    tool: ['Share-Safe File Check', 'security/share-safe-check'],
+    guide: ['Redact personal data', '/tools/pdf/redact/'],
     category: ['PDF tools', '/categories/pdf-tools.html']
   },
   {
-    key: 'developerData',
-    title: 'Clean developer data',
-    description: 'Format JSON, compare text changes and keep shareable snippets readable.',
-    tool: ['JSON Formatter', 'dev/json-formatter'],
-    guide: ['Debugging tool chain', '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html'],
-    category: ['Developer tools', '/categories/developer-tools.html']
+    key: 'photoLocation',
+    title: 'Post or send a photo without its location',
+    description: 'See whether the photo carries GPS coordinates or a camera serial, remove them without recompressing, then shrink it for upload.',
+    tool: ['Share-Safe File Check', 'security/share-safe-check'],
+    guide: ['Compress the image', '/tools/image/compress/'],
+    category: ['Image tools', '/categories/image-tools.html']
   },
   {
-    key: 'lighterImages',
-    title: 'Publish lighter images',
-    description: 'Resize, compress and review file names before uploading images to a site or email.',
-    tool: ['Image Compressor', 'image/compress'],
-    guide: ['Image quality checklist', '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html'],
-    category: ['Image tools', '/categories/image-tools.html']
+    key: 'supportHar',
+    title: 'Attach a HAR file or log to a support ticket',
+    description: 'Replace cookies, bearer tokens, JWTs and API keys with [REDACTED] before the file reaches a vendor.',
+    tool: ['Share-Safe File Check', 'security/share-safe-check'],
+    guide: ['What a JWT exposes', '/blog/articles/understanding-json-web-tokens-structure-security.html'],
+    category: ['Security tools', '/categories/security-tools.html']
   }
 ];
 
@@ -347,23 +374,25 @@ function renderFeaturedTools() {
   const container = document.getElementById('featuredTools');
   if (!container) return;
 
-  // Every certified tool, in curated order first. A hand-written shortlist went
-  // stale as soon as certification changed and left the section with two cards
-  // and an empty half-screen underneath.
+  // The curated shortlist, minus anything that lost certification. If fewer than
+  // the limit survive, top up from other certified tools so the section never
+  // shows a near-empty grid; it never grows past the limit, whatever the catalogue
+  // size (tests/e2e/accessibility.spec.mjs holds that line).
   const curated = featuredTools.filter((tool) => certifiedPaths.has(getToolHref(tool.slug)));
   const curatedPaths = new Set(curated.map((tool) => getToolHref(tool.slug)));
-  const rest = certifiedPublicTools
+  const topUp = certifiedPublicTools
     .filter((tool) => !curatedPaths.has(canonicalToolPath(tool)))
+    .slice(0, Math.max(0, FEATURED_TOOL_LIMIT - curated.length))
     .map((tool) => ({
       key: tool.id,
       slug: canonicalToolPath(tool).replace(/^\/tools\//, '').replace(/\/$/, ''),
       name: tool.nameEn || tool.name || tool.id,
       description: (typeof tool.description === 'string' ? tool.description : tool.description?.en || tool.description?.tr) || '',
-      category: getCategoryLabel(tool.category) || 'Tools',
+      category: tool.category,
       icon: iconForCategory(tool.category)
     }));
 
-  setGridMarkup(container, [...curated, ...rest].map((tool) => `
+  setGridMarkup(container, [...curated, ...topUp].slice(0, FEATURED_TOOL_LIMIT).map((tool) => `
     <article class="featured-tool-card">
       <div class="featured-tool-card__icon">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -484,8 +513,8 @@ function renderWorkflowCards() {
         <h3>${title}</h3>
         <p>${description}</p>
         <div class="workflow-card__steps">
-          <a href="${getToolHref(workflow.tool[1])}"><strong>${t('home.workflows.steps.tool', 'Tool')}</strong>${toolLabel}</a>
-          <a href="${workflow.guide[1]}"><strong>${t('home.workflows.steps.guide', 'Guide')}</strong>${guideLabel}</a>
+          <a href="${getToolHref(workflow.tool[1])}"><strong>${t('home.workflows.steps.check', 'Check')}</strong>${toolLabel}</a>
+          <a href="${workflow.guide[1]}"><strong>${t('home.workflows.steps.next', 'Then')}</strong>${guideLabel}</a>
           <a href="${workflow.category[1]}"><strong>${t('home.workflows.steps.browse', 'Browse')}</strong>${categoryLabel}</a>
         </div>
       </article>

@@ -174,17 +174,19 @@ test('homepage mobile discovery stays concise without hiding category routes', a
   }
   await expect(page.locator('#categoriesPending')).toBeVisible();
 
-  // Budget bumped when the "Developer Tools" category card started appearing here
-  // (its first certified tool shipped), which legitimately added ~400px. Keep some
-  // margin above the current real height so this still catches actual bloat.
-  // Bumped again when PDF Redact became the fourth certified PDF tool listed on the
-  // homepage (+61px, measured 12161 in CI).
-  // Bumped again when the certified Retirement and Student Loan calculators got manifest entries
-  // and started appearing in homepage discovery (two ~260px mobile cards; 12653 measured locally).
-  // Bumped again when Share-Safe File Check became a certified security tool (one more
-  // mobile card; 12900 measured in CI, +247px over the previous measurement).
+  // The homepage must not grow with the catalogue. It used to render a card for
+  // every certified tool (~250px each at 375px), and this budget was raised four
+  // times (12161 -> 12653 -> 12900 -> 13150) as tools were certified: the test
+  // was being moved to fit the bug. Featured tools are now a fixed shortlist, so
+  // the card count is asserted directly and the height budget is back to a fixed
+  // number with ~10% headroom over the measured 8.4k (8934 with "Recently used"
+  // visible, which it is not in a fresh test browser). Raise it only for a
+  // deliberate new section, never for one more tool.
+  const featuredCards = await page.locator('#featuredTools .featured-tool-card').count();
+  expect(featuredCards).toBeGreaterThan(0);
+  expect(featuredCards).toBeLessThanOrEqual(6);
   const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
-  expect(documentHeight).toBeLessThan(13150);
+  expect(documentHeight).toBeLessThan(9400);
 });
 
 test('gold-standard PDF page exposes usable mobile navigation', async ({ page }) => {

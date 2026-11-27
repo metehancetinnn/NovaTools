@@ -5,18 +5,21 @@ const DEFAULT_LOCALE = 'en';
 const DESCRIPTION_LIMIT = 160;
 const TITLE_LIMIT = 60;
 
+// Mirrors the static <title>/<meta> in index.html; this runs after load and
+// replaces them, so it must say the same thing. It used to claim "110+ free
+// online tools" while 27 tools were certified and listed.
 const HOME_COPY = {
   en: {
-    title: 'NovaTools – Free Online Tools for PDF, Image, Text & More',
-    description: '110+ free online tools for PDF editing, image processing, text analysis, and finance calculations. Your data stays in your browser; no signup required.'
+    title: 'Check What a File Reveals Before You Send It | NovaTools',
+    description: 'Find GPS location, names, old revisions, comments and tokens in photos, PDFs, Office files and HAR logs, then get a cleaned copy. Nothing is uploaded.'
   },
   tr: {
-    title: 'NovaTools – Ücretsiz Araçlar | PDF, Görüntü ve Metin',
-    description: '110+ ücretsiz online araç; PDF düzenleme, görüntü işleme, metin analizi ve finans hesaplamaları. Verileriniz tarayıcınızda kalır, kayıt gerekmez.'
+    title: 'Dosyanız Ne Ele Veriyor? Göndermeden Kontrol Edin',
+    description: 'Fotoğraf, PDF, Office ve HAR dosyalarındaki konum, isim, eski sürüm, yorum ve token bilgisini bulun; temiz kopyayı tarayıcınızda alın. Dosya yüklenmez.'
   },
   ar: {
-    title: 'NovaTools – أدوات مجانية للملفات والصور والنصوص',
-    description: 'أكثر من 110 أدوات مجانية عبر الإنترنت لملفات PDF والصور والنصوص والحسابات المالية. تبقى بياناتك في متصفحك ولا يلزم التسجيل.'
+    title: 'NovaTools – افحص ما يكشفه الملف قبل إرساله',
+    description: 'اكتشف الموقع والأسماء والمراجعات السابقة والرموز المخفية في الصور وملفات PDF وOffice قبل إرسالها، ونظّفها في متصفحك دون رفعها.'
   }
 };
 

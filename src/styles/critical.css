@@ -3304,6 +3304,14 @@ article.tool-resource blockquote {
   text-wrap: pretty;
 }
 
+.home-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: var(--space-5) 0 0;
+  gap: var(--space-3);
+}
+
 .home-hero__tasks {
   display: flex;
   max-width: 46rem;

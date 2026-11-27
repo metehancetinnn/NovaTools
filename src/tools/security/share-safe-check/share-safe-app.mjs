@@ -122,6 +122,22 @@ async function fullScan(bytes, kind) {
   return scan;
 }
 
+// Activation and completion counts for docs/research/growth-experiments.md.
+// gtag exists only after the visitor accepts analytics cookies (the consent
+// manager activates the tag); without it this does nothing. Only coarse,
+// allow-listed fields are sent: the file type, a size bucket, counts and
+// whether the re-check passed. Never the file name, contents or findings text.
+function sizeBucket(bytes) {
+  if (bytes < 100 * 1024) return 'lt_100kb';
+  if (bytes < 1024 * 1024) return 'lt_1mb';
+  if (bytes < 10 * 1024 * 1024) return 'lt_10mb';
+  return 'gte_10mb';
+}
+function track(name, params) {
+  if (typeof window.gtag !== 'function') return;
+  window.gtag('event', name, { tool_slug: 'security/share-safe-check', ...params });
+}
+
 function setStatus(message, isError = false) {
   const el = $('scanStatus');
   el.textContent = message;
@@ -243,6 +259,11 @@ async function handleFile(file) {
       : 'Nothing here can be removed automatically; follow the notes above.';
     $('report').hidden = false;
     setStatus('Check complete. Nothing was uploaded.');
+    const counts = summarize(scan.findings);
+    track('tool_success', {
+      mode: 'scan', output_format: kind, success: true, file_size_bucket: sizeBucket(file.size),
+      finding_high: counts.high, finding_total: scan.findings.length
+    });
   } catch (error) {
     setStatus(`The file could not be read: ${error.message}`, true);
   }
@@ -273,6 +294,7 @@ async function handleClean() {
     link.download = `${base}-clean${ext}`;
     $('resultSection').hidden = false;
     setStatus('Cleaned copy ready. Open it once before you send it.');
+    track('tool_success', { mode: 'clean', output_format: current.kind, success: stillThere.length === 0 });
   } catch (error) {
     setStatus(`Cleaning failed: ${error.message}`, true);
   } finally {
@@ -297,6 +319,9 @@ function init() {
     handleFile(event.dataTransfer.files[0]);
   });
   $('cleanBtn').addEventListener('click', handleClean);
+  $('downloadLink').addEventListener('click', () => {
+    if (current) track('result_download', { output_format: current.kind });
+  });
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

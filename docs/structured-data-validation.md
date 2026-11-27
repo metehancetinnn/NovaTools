@@ -1,10 +1,10 @@
 # Structured Data Graph Validation Report
 
-Generated: 2026-11-27T09:56:15.164Z
+Generated: 2026-11-27T10:07:21.738Z
 
 ## Scope
 
-- HTML files scanned: 471
+- HTML files scanned: 446
 - HTML files with JSON-LD: 318
 - Unique @id definitions: 1173
 

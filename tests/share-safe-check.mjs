@@ -298,5 +298,14 @@ assert.doesNotMatch(page$, /LPC|psk\.dan/, 'the page must not carry the retired 
 assert.match(page$, /not uploaded/i, 'the privacy promise must be stated');
 const appSource = readFileSync('src/tools/security/share-safe-check/share-safe-app.mjs', 'utf8');
 assert.doesNotMatch(appSource, /\bfetch\(|XMLHttpRequest|sendBeacon/, 'the tool must not send file data anywhere');
+// Usage events are consent-gated (gtag only exists after analytics consent) and
+// must never carry the file name, bytes or finding text.
+const trackCalls = [...appSource.matchAll(/track\('([a-z_]+)',\s*(\{[\s\S]*?\})\);/g)];
+assert.ok(trackCalls.length >= 3, 'scan, clean and download are measured');
+for (const [, , params] of trackCalls) {
+  assert.doesNotMatch(params, /\.name\b|bytes|detail|title|text|findings\)/, `event params must stay coarse: ${params}`);
+}
+assert.match(appSource, /typeof window\.gtag !== 'function'\) return;/, 'events are dropped when analytics consent was not given');
+assert.match(page$, /never records the file name, its contents/, 'the page discloses what is measured');
 
 console.log('share-safe-check: all assertions passed');

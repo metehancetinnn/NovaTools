@@ -8,9 +8,9 @@ export const CONFIG = {
   app: {
     name: 'NovaTools MC',
     version: '2.0.0',
-    author: 'Licensed Professional Counselor Metehan ÇETİN',
+    author: 'Metehan ÇETİN',
     email: 'support@mc-novatools.com',
-    copyright: '© 2026 Licensed Professional Counselor Metehan ÇETİN. All rights reserved.'
+    copyright: '© 2026 MC NovaTools. All rights reserved.'
   },
 
   // API Configuration

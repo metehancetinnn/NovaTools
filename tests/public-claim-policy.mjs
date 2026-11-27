@@ -49,4 +49,16 @@ assert.match(legalCopy.common.social, /ownership is verified/i);
 assert.equal('sameAs' in legalCopy, false);
 assert.equal('alumniOf' in legalCopy, false);
 
+// The owner does not hold a US Licensed Professional Counselor (LPC) licence.
+// Source files must not present that title; the build-time sanitizer is a
+// safety net, not the fix. Docs and this policy's own patterns are exempt.
+{
+  const { execFileSync } = await import('node:child_process');
+  const out = (() => { try { return execFileSync('git', ['grep', '-n', '-I', '-E',
+    '(ÇETİN|Çetin|ÇETIN|ЧЕТИН)[)]?[,，、] ?LPC|Licensed Professional Counselor (Metehan|&)',
+    '--', '.', ':!docs', ':!PHASE4_AUDIT.md', ':!tests', ':!src/core/trust/public-claim-policy.mjs'
+  ], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim(); } catch (error) { if (error.status === 1) return ''; throw error; } })();
+  assert.equal(out, '', `LPC credential still presented in source:\n${out}`);
+}
+
 console.log('public claim policy: pass');

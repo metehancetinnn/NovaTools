@@ -44,11 +44,11 @@
             "id": "team",
             "title": "Team and review roles",
             "body": [
-              "MC NovaTools is maintained as a small, remote-first project. The current public editorial lead is Metehan Çetin, LPC, who reviews site content for practical clarity, privacy-first language, accessibility concerns, finance disclaimers, and user-facing workflow quality. The project also uses a named editorial role for routine content review so readers can separate authorship from quality control. Public profiles are linked where available, and author pages explain areas of knowledge, review scope, and limitations."
+              "MC NovaTools is maintained as a small, remote-first project. The current public editorial lead is Metehan Çetin, who reviews site content for practical clarity, privacy-first language, accessibility concerns, finance disclaimers, and user-facing workflow quality. The project also uses a named editorial role for routine content review so readers can separate authorship from quality control. Public profiles are linked where available, and author pages explain areas of knowledge, review scope, and limitations."
             ],
             "cards": [
               {
-                "name": "Metehan Çetin, LPC",
+                "name": "Metehan Çetin",
                 "role": "Founder, editor and workflow reviewer",
                 "image": "/assets/authors/metehan-cetin.svg",
                 "bio": "Metehan reviews MC NovaTools pages for browser-first file workflows, privacy explanations, accessibility, content quality, and finance-tool disclaimers. His author profile documents experience with practical web tools, PDF preparation, image optimization, developer utilities, and clear user guidance."
@@ -74,7 +74,7 @@
             "id": "author-credentials",
             "title": "Author credentials and accountability",
             "body": [
-              "Primary author and reviewer: Metehan Çetin, LPC. Role: founder, editor, and browser-workflow reviewer for MC NovaTools. Areas covered on this site include PDF processing workflows, image optimization workflows, web development utilities, privacy-first product copy, accessibility-aware page structure, and finance-calculator disclaimers. Public author profile: <a href=\"/author/metehan-cetin.html\">/author/metehan-cetin</a>.",
+              "Primary author and reviewer: Metehan Çetin. Role: founder, editor, and browser-workflow reviewer for MC NovaTools. Areas covered on this site include PDF processing workflows, image optimization workflows, web development utilities, privacy-first product copy, accessibility-aware page structure, and finance-calculator disclaimers. Public author profile: <a href=\"/author/metehan-cetin.html\">/author/metehan-cetin</a>.",
               "Readers can contact the project at <a href=\"mailto:support@mc-novatools.com\">support@mc-novatools.com</a> for corrections, accessibility issues, privacy questions, broken links, tool bugs, or requests to clarify a guide. Corrections that affect safety, privacy, finance assumptions, or legal trust pages are prioritized over cosmetic requests."
             ]
           }
@@ -149,7 +149,7 @@
             "id": "data-controller",
             "title": "Data controller and contact",
             "body": [
-              "MC NovaTools is operated by Metehan ÇETİN, LPC for this public website and its browser-based utility pages. Privacy questions and rights requests can be sent to support@mc-novatools.com.",
+              "MC NovaTools is operated by Metehan ÇETİN for this public website and its browser-based utility pages. Privacy questions and rights requests can be sent to support@mc-novatools.com.",
               "This policy is written for a general international audience, including visitors from the European Economic Area, the United Kingdom, and Türkiye. It is intended to be transparent, but it is not legal advice."
             ]
           },
@@ -506,7 +506,7 @@
             "title": "Ekip",
             "cards": [
               {
-                "name": "Metehan ÇETİN, LPC",
+                "name": "Metehan ÇETİN",
                 "role": "Founder and editor",
                 "bio": "Responsible for product direction, content standards, privacy-first positioning, and public support channels."
               }
@@ -545,7 +545,7 @@
             "id": "data-controller",
             "title": "Veri sorumlusu ve iletişim",
             "body": [
-              "MC NovaTools, bu web sitesi ve tarayıcı tabanlı araçlar için Metehan ÇETİN, LPC tarafından işletilir. Gizlilik soruları ve hak talepleri support@mc-novatools.com adresine gönderilebilir.",
+              "MC NovaTools, bu web sitesi ve tarayıcı tabanlı araçlar için Metehan ÇETİN tarafından işletilir. Gizlilik soruları ve hak talepleri support@mc-novatools.com adresine gönderilebilir.",
               "Bu politika Avrupa Ekonomik Alanı, Birleşik Krallık ve Türkiye dahil genel uluslararası ziyaretçiler için şeffaflık amacıyla hazırlanmıştır; hukuki danışmanlık değildir."
             ]
           },
@@ -942,7 +942,7 @@
             "title": "الفريق",
             "cards": [
               {
-                "name": "Metehan ÇETİN, LPC",
+                "name": "Metehan ÇETİN",
                 "role": "Founder and editor",
                 "bio": "Responsible for product direction, content standards, privacy-first positioning, and public support channels."
               }
@@ -981,7 +981,7 @@
             "id": "data-controller",
             "title": "مسؤول البيانات والتواصل",
             "body": [
-              "تُدار MC NovaTools بواسطة Metehan ÇETİN, LPC لهذا الموقع وأدواته العاملة في المتصفح. يمكن إرسال أسئلة الخصوصية وطلبات الحقوق إلى support@mc-novatools.com.",
+              "تُدار MC NovaTools بواسطة Metehan ÇETİN لهذا الموقع وأدواته العاملة في المتصفح. يمكن إرسال أسئلة الخصوصية وطلبات الحقوق إلى support@mc-novatools.com.",
               "أُعدت هذه السياسة لجمهور دولي عام، بما في ذلك زوار المنطقة الاقتصادية الأوروبية والمملكة المتحدة وتركيا، بهدف الشفافية وليست مشورة قانونية."
             ]
           },

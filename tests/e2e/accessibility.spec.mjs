@@ -168,7 +168,11 @@ test('homepage mobile discovery stays concise without hiding category routes', a
     const href = await categoryLinks.nth(i).getAttribute('href');
     const response = await page.request.get(href);
     expect(response.status(), `${href} must exist`).toBe(200);
-    expect(await response.text(), `${href} must list at least one tool`).toMatch(/guide-tool-card/);
+    // A category with a single tool links straight to it (src/data/categories.js 'href');
+    // that target must then be a tool page, not an empty hub.
+    const body = await response.text();
+    if (href.startsWith('/tools/')) expect(body, `${href} must be a tool page`).toMatch(/data-tool-id="/);
+    else expect(body, `${href} must list at least one tool`).toMatch(/guide-tool-card/);
   }
   await expect(page.locator('#categoriesPending')).toBeVisible();
 

@@ -20,4 +20,4 @@ Updated 2026-11-28. Severity: H/M/L. Status: open / mitigated / accepted.
 | R-14 | Pre/Post demand is unproven | No direct counselor complaints captured; search volume unknown | H (product) | accepted | Validation plan with stop conditions (growth-experiments.md G-R1..G-R3). |
 | R-15 | Law 657 art. 28 may bar any commercial income | turkiye-business-feasibility.md | H (legal) | open | No revenue, ads or sales on the new tool until a lawyer and mali müşavir answer (D-014). |
 | R-16 | Local Windows build runs out of memory in one `npm run build` | 1.8 GB free commit memory; steps pass when run one by one | L | accepted | Linux CI is authoritative. |
-| R-17 | Removing the PDF hash from vercel.json assumes Linux generates the remaining hash set | Previous CI passed with both hashes; one belonged to the retired PDF Compressor page | L | open | Confirm on the next CI run. |
+| R-17 | CSP hashes of retired pages left in vercel.json | CI on d7776674: both remaining stale hashes belonged to retired pages | L | mitigated | vercel.json now equals the policy CI generated. |

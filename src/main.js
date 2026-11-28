@@ -68,7 +68,7 @@ function getCategoryDescription(category) {
 }
 
 function getCategoryHref(category) {
-  return `/categories/${category.slug}.html`;
+  return category.href || `/categories/${category.slug}.html`;
 }
 
 function getToolHref(slug) {

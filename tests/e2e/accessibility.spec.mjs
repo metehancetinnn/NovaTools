@@ -149,9 +149,9 @@ test('homepage mobile discovery links resolve and search keeps focus inside the 
 });
 
 test('homepage SearchAction query opens the real tool search', async ({ page }) => {
-  await page.goto('/?q=PDF%20Compressor', { waitUntil: 'domcontentloaded' });
+  await page.goto('/?q=Pre%2FPost%20Results', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#searchModal')).toBeVisible();
-  await expect(page.locator('#globalSearch')).toHaveValue('PDF Compressor');
+  await expect(page.locator('#globalSearch')).toHaveValue('Pre/Post Results');
   await expect(page.locator('#searchResults a')).not.toHaveCount(0);
 });
 

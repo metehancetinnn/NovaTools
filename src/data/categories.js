@@ -5,6 +5,26 @@
 
 export const categories = [
   {
+    slug: 'education',
+    // One tool, so the card opens it directly instead of a hub page.
+    href: '/tools/education/pre-post-results/',
+    name: 'School Counseling',
+    shortName: 'Counseling',
+    description: 'Turn before and after survey answers from a counseling lesson or small group into results by objective, a chart and a summary.',
+    shortDescription: 'Pre/post results for counselors',
+    icon: 'trending-up',
+    color: '#2563EB',
+    gradient: 'from-blue-500/20 to-indigo-500/20',
+    featured: true,
+    toolCount: 0,
+    tags: ['school counseling', 'pre post', 'survey', 'results'],
+    meta: {
+      title: 'Pre/Post Results Builder for School Counselors | MC NovaTools',
+      description: 'Turn before and after survey answers into matched-student results by objective, a chart and a summary. Answers stay in your browser.',
+      keywords: 'pre post survey results, school counselor data'
+    }
+  },
+  {
     slug: 'finance-tools',
     name: 'Finance Tools',
     shortName: 'Finance',

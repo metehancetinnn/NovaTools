@@ -82,69 +82,9 @@
           "sizes": "192x192"
         }
       ]
-    },
-    {
-      "name": "PDF Merger",
-      "short_name": "PDF Merge",
-      "description": "Merge PDF files",
-      "url": "/tools/pdf/merge/",
-      "icons": [
-        {
-          "src": "/icons/pdf-192.png",
-          "sizes": "192x192"
-        }
-      ]
-    }
-  ],
-  "share_target": {
-    "action": "/tools/pdf/merge/?share-target=true",
-    "method": "POST",
-    "enctype": "multipart/form-data",
-    "params": {
-      "title": "name",
-      "text": "description",
-      "url": "link",
-      "files": [
-        {
-          "name": "pdfFiles",
-          "accept": [
-            "application/pdf",
-            "image/*"
-          ]
-        }
-      ]
-    }
-  },
-  "file_handlers": [
-    {
-      "action": "/tools/pdf/merge/?file-handler=true",
-      "accept": {
-        "application/pdf": [
-          ".pdf"
-        ]
-      }
-    },
-    {
-      "action": "/tools/image/compress/?file-handler=true",
-      "accept": {
-        "image/*": [
-          ".png",
-          ".jpg",
-          ".jpeg",
-          ".webp"
-        ]
-      }
     }
   ],
   "protocol_handlers": [
-    {
-      "protocol": "web+pdfmerge",
-      "url": "/tools/pdf/merge/?source=%s"
-    },
-    {
-      "protocol": "web+pdfcompress",
-      "url": "/tools/pdf/compress/?source=%s"
-    },
     {
       "protocol": "web+mortgage",
       "url": "/tools/finance/mortgage-refinance/?source=%s"

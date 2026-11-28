@@ -21,6 +21,9 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { globSync } from 'glob';
 import path from 'node:path';
+import outOfScopeSlugs, { OUT_OF_SCOPE_REASON } from '../src/data/blog-editorial-scope.js';
+
+const OUT_OF_SCOPE = new Set(outOfScopeSlugs);
 
 const ARTICLE_GLOB = 'src/blog/articles/**/*.html';
 const MANIFEST = 'src/i18n/blog/en.json';
@@ -131,17 +134,23 @@ function buildRecord({ results, total, threshold }) {
       sharedSentenceAppearsInAtLeast: threshold,
       maxSharedSentenceRatioForPublication: MAX_SHARED_SENTENCE_RATIO
     },
-    articles: results.map((result) => ({
-      slug: result.slug,
-      source: result.source,
-      sentences: result.sentences,
-      sharedSentences: result.sharedSentences,
-      sharedRatio: result.sharedRatio,
-      status: result.sharedRatio <= MAX_SHARED_SENTENCE_RATIO ? 'PUBLISHED' : 'UNPUBLISHED_TEMPLATE_DUPLICATION',
-      reason: result.sharedRatio <= MAX_SHARED_SENTENCE_RATIO
-        ? null
-        : `${Math.round(result.sharedRatio * 100)}% of this article's sentences appear verbatim in at least ${threshold} other articles.`
-    }))
+    articles: results.map((result) => {
+      const original = result.sharedRatio <= MAX_SHARED_SENTENCE_RATIO;
+      const status = !original ? 'UNPUBLISHED_TEMPLATE_DUPLICATION'
+        : OUT_OF_SCOPE.has(result.slug) ? 'UNPUBLISHED_OUT_OF_SCOPE'
+          : 'PUBLISHED';
+      return {
+        slug: result.slug,
+        source: result.source,
+        sentences: result.sentences,
+        sharedSentences: result.sharedSentences,
+        sharedRatio: result.sharedRatio,
+        status,
+        reason: status === 'PUBLISHED' ? null
+          : status === 'UNPUBLISHED_OUT_OF_SCOPE' ? OUT_OF_SCOPE_REASON
+            : `${Math.round(result.sharedRatio * 100)}% of this article's sentences appear verbatim in at least ${threshold} other articles.`
+      };
+    })
   };
 }
 
@@ -192,6 +201,9 @@ for (const result of measurement.results) {
   if (!entry) {
     failures.push(`${result.slug} is not in ${RECORD}; every article must carry an explicit publication decision.`);
     continue;
+  }
+  if (entry.status === 'PUBLISHED' && OUT_OF_SCOPE.has(result.slug)) {
+    failures.push(`${result.slug} is marked PUBLISHED but is listed in src/data/blog-editorial-scope.js as outside the editorial scope.`);
   }
   if (entry.status === 'PUBLISHED' && result.sharedRatio > MAX_SHARED_SENTENCE_RATIO) {
     failures.push(

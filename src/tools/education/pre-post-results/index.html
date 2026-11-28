@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/plain" data-consent-category="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-Y896L63239"></script>
+<script type="text/plain" data-consent-category="analytics">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y896L63239', {
+    anonymize_ip: true,
+    cookie_expires: 63072000,
+    cookie_update: true
+  });
+</script>
+  <meta charset="UTF-8">
+  <script>(function(){var t=localStorage.getItem('novatools-theme');if(t)document.documentElement.setAttribute('data-theme',t);else{var d=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',d);document.documentElement.style.colorScheme=d;}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/src/styles/critical.css">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <title>Pre/Post Results Builder for School Counselors (Free, No Upload)</title>
+  <meta name="description" content="Paste before and after survey answers from a counseling lesson or group. Get matched results by objective, a chart and a summary. Answers stay in your browser.">
+  <meta name="theme-color" content="#0A0A0C">
+  <meta property="og:title" content="Pre/Post Results Builder for School Counselors (Free, No Upload)">
+  <meta property="og:description" content="Turn before and after survey answers into matched-student results by objective, a chart and a summary paragraph. Runs in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mc-novatools.com/tools/education/pre-post-results/">
+  <meta property="og:image" content="https://mc-novatools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pre/Post Results Builder for School Counselors">
+  <meta name="twitter:description" content="Turn before and after survey answers into matched-student results by objective, a chart and a summary paragraph. Runs in your browser.">
+  <link rel="canonical" href="https://mc-novatools.com/tools/education/pre-post-results/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [{
+      "@type": "WebApplication",
+      "name": "Pre/Post Results Builder",
+      "description": "Turns before and after survey answers from a school counseling lesson or small group into matched-student results by objective, a chart, a results table and a descriptive summary. Runs in the browser; answers are not uploaded.",
+      "url": "https://mc-novatools.com/tools/education/pre-post-results/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "audience": {"@type": "Audience", "audienceType": "School counselors"},
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    }]
+  }
+  </script>
+  <style>
+    .tool-container { max-width: 1040px; margin: 0 auto; padding: 2rem 1rem; }
+    /* The shared tool layout is a two-column grid; this page uses the full width. */
+    .tool-container > * { grid-column: 1 / -1; }
+    .tool-header { text-align: center; margin-bottom: 2rem; }
+    .tool-header h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 0.5rem; }
+    .tool-header p { color: var(--text-secondary); max-width: 46rem; margin: 0 auto; }
+    .panel { margin-top: 1.25rem; padding: 1.25rem; background: var(--surface-default); border: 1px solid var(--border-default); border-radius: var(--radius-lg, 12px); }
+    .panel h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+    .panel label { display: block; font-weight: 600; margin-bottom: 0.35rem; }
+    .hint { color: var(--text-secondary); font-size: 0.875rem; margin: 0.25rem 0 0.5rem; }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .field, .pair textarea, .panel select, .panel input[type="text"], .panel input[type="number"] { width: 100%; box-sizing: border-box; padding: 0.55rem 0.65rem; border: 1px solid var(--field-border, var(--border-default)); border-radius: 8px; background: var(--field-bg, transparent); color: var(--text-primary); font: inherit; }
+    .pair textarea { min-height: 11rem; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin-top: 0.9rem; }
+    .panel .file-btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 500; }
+    .privacy-warning { margin-top: 1rem; padding: 0.9rem 1rem; border-radius: 10px; border: 1px solid rgba(217,119,6,.5); background: rgba(217,119,6,.1); }
+    .table-wrap { overflow-x: auto; }
+    table.pp-table { display: table; width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    table.pp-table thead { display: table-header-group; } table.pp-table tbody { display: table-row-group; } table.pp-table tr { display: table-row; }
+    table.pp-table th, table.pp-table td { display: table-cell; text-align: left; vertical-align: middle; padding: 0.45rem; border-bottom: 1px solid var(--border-default); }
+    table.pp-table td input[type="number"] { width: 4.5rem; }
+    .item-name { max-width: 16rem; overflow-wrap: anywhere; }
+    #status[data-error="true"] { color: #DC2626; }
+    #warnings { margin: 0 0 1rem; padding-left: 1.2rem; color: #B45309; }
+    :root[data-theme="dark"] #warnings { color: #FCD34D; }
+    #chart { overflow-x: auto; background: #fff; border-radius: 10px; padding: 0.5rem; }
+    #chart svg { max-width: 100%; height: auto; }
+    #summary { min-height: 8rem; }
+    .summary-label { margin-top: 1rem; }
+    .tool-description { max-width: 1040px; margin: 0 auto; padding: 0 1rem 2rem; }
+    .tool-description h2 { margin-top: 2rem; }
+    @media (max-width: 720px) { .pair { grid-template-columns: 1fr; } }
+    @media print {
+      body * { visibility: hidden; }
+      #report, #report * { visibility: visible; }
+      #report { position: absolute; inset: 0; padding: 1rem; color: #000; background: #fff; }
+      #report .actions { display: none; }
+    }
+  </style>
+  <script type="module" src="./pre-post-app.mjs"></script>
+</head>
+<body>
+  <div id="app" class="app">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="bg-ambient" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+        <header class="main-header">
+      <div class="container">
+        <div class="header-inner">
+          <a href="https://mc-novatools.com/" class="logo" aria-label="NovaTools MC Home">
+            <picture><source srcset="/logo-bird-44.webp" type="image/webp"><img src="/logo-bird.png" alt="NovaTools MC" class="header-logo-img" width="44" height="44" decoding="async"></picture>
+            <span class="logo-text">NovaTools <span class="logo-mc">MC</span></span>
+          </a>
+          <nav class="nav-desktop" aria-label="Main navigation">
+            <a href="https://mc-novatools.com/#finance" class="nav-link">Finance</a>
+            <a href="https://mc-novatools.com/tools/education/pre-post-results/" class="nav-link">Pre/Post Results</a>
+            <a href="https://mc-novatools.com/#dev" class="nav-link">Developers</a>
+          </nav>
+          <div class="privacy-badge" title="Your data never leaves your browser">
+            <span class="privacy-badge-dot"></span>
+            <span>Privacy First</span>
+          </div>
+          <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <button type="button" id="mobileMenuBtn" class="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+        </div>
+        <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation" hidden>
+          <a href="https://mc-novatools.com/#finance" class="mobile-nav-link">Finance Tools</a>
+          <a href="https://mc-novatools.com/tools/education/pre-post-results/" class="mobile-nav-link">Pre/Post Results</a>
+          <a href="https://mc-novatools.com/#dev" class="mobile-nav-link">Developer Tools</a>
+        </nav>
+      </div>
+    </header>
+
+<main id="main-content" class="main-content">
+  <div class="tool-container">
+    <div class="tool-header">
+      <h1>Pre/Post Results Builder</h1>
+      <p class="tool-updated-note">Last updated: <time datetime="2026-11-28">2026-11-28</time></p>
+      <p>For school counselors who give the same short survey before and after a lesson unit or small group. Paste both sets of answers and get matched-student results by objective, a chart, a results table and a summary paragraph for your report. The answers never leave your browser.</p>
+    </div>
+
+    <section class="panel" aria-labelledby="step1">
+      <h2 id="step1">1. Paste the answers</h2>
+      <label for="reportTitle">Report title</label>
+      <input id="reportTitle" class="field" type="text" placeholder="e.g. Grade 7 small group: managing test stress (Fall 2026)">
+      <p class="hint">Use one row per student and one column per question, with a student code column (not names). Copy the cells from Google Sheets or Excel, or open a CSV export from Google Forms or Microsoft Forms. Both sheets need the same question columns.</p>
+      <div class="pair">
+        <div>
+          <label for="preInput">Before (pre-survey)</label>
+          <textarea id="preInput" spellcheck="false" placeholder="Student code, Question 1, Question 2&#10;S01, 2, no"></textarea>
+          <label class="file-btn">Open a CSV file <input id="preFile" type="file" accept=".csv,.tsv,.txt,text/csv"></label>
+        </div>
+        <div>
+          <label for="postInput">After (post-survey)</label>
+          <textarea id="postInput" spellcheck="false" placeholder="Student code, Question 1, Question 2&#10;S01, 4, yes"></textarea>
+          <label class="file-btn">Open a CSV file <input id="postFile" type="file" accept=".csv,.tsv,.txt,text/csv"></label>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" id="loadSample" class="btn btn-secondary">Load example data</button>
+        <button type="button" id="clearAll" class="btn btn-ghost">Clear everything</button>
+        <label class="file-btn">Open a saved project <input id="openProject" type="file" accept=".json,application/json"></label>
+      </div>
+      <div id="privacyWarning" class="privacy-warning" role="alert" hidden></div>
+    </section>
+
+    <section class="panel" id="setupSection" aria-labelledby="step2" hidden>
+      <h2 id="step2">2. Match questions to objectives</h2>
+      <div class="pair">
+        <div>
+          <label for="idColumn">Student code column</label>
+          <select id="idColumn"></select>
+          <p class="hint"><label class="file-btn"><input id="matchedOnly" type="checkbox" checked> Only count students who answered both surveys (recommended)</label></p>
+        </div>
+        <div>
+          <label for="objectiveList">Objectives, one per line</label>
+          <textarea id="objectiveList" class="field" rows="4" placeholder="Students can name three coping strategies"></textarea>
+          <p class="hint">You will be warned if an objective has no question measuring it.</p>
+        </div>
+      </div>
+      <datalist id="objectiveOptions"></datalist>
+      <div class="table-wrap">
+        <table class="pp-table">
+          <thead><tr><th scope="col">Use</th><th scope="col">Question</th><th scope="col">Objective</th><th scope="col">Answer type</th><th scope="col">Scale top</th><th scope="col">Target</th><th scope="col">Reverse</th><th scope="col">Right answer</th></tr></thead>
+          <tbody id="itemRows"></tbody>
+        </table>
+      </div>
+      <p class="hint"><strong>Target</strong>: on a scale question, an answer at or above this value counts as meeting the target (for example 4 or 5 on a 1 to 5 scale). <strong>Reverse</strong>: for questions where a lower answer is better, such as "I worry before tests".</p>
+      <div class="actions">
+        <button type="button" id="analyzeBtn" class="btn btn-primary">Build the results</button>
+      </div>
+    </section>
+    <p id="status" role="status" aria-live="polite"></p>
+
+    <section class="panel" id="resultsSection" aria-labelledby="step3" hidden>
+      <div id="report">
+        <h2 id="step3">3. <span id="reportTitleOut"></span></h2>
+        <ul id="warnings" hidden></ul>
+        <p id="counts"></p>
+        <div id="chart"></div>
+        <div class="table-wrap"><table class="pp-table" id="resultsTable"></table></div>
+        <label for="summary" class="summary-label">Summary paragraph (you can edit it)</label>
+        <textarea id="summary" class="field"></textarea>
+        <div class="actions">
+          <button type="button" id="downloadPng" class="btn btn-primary">Download chart (PNG)</button>
+          <button type="button" id="downloadSvg" class="btn btn-secondary">Chart (SVG)</button>
+          <button type="button" id="downloadCsv" class="btn btn-secondary">Results table (CSV)</button>
+          <button type="button" id="copySummary" class="btn btn-secondary">Copy summary</button>
+          <button type="button" id="printReport" class="btn btn-secondary">Print or save as PDF</button>
+          <button type="button" id="saveProject" class="btn btn-ghost">Save project file</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <article class="tool-description">
+    <h2>What it calculates</h2>
+    <ul>
+      <li><strong>Matched students:</strong> codes are matched between the two sheets, ignoring upper and lower case. Students who answered only once are counted and left out, so the before and after groups are the same people.</li>
+      <li><strong>Share meeting the target</strong> for each question: for scale questions, answers at or above your target value; for yes/no questions, "yes"; for knowledge questions, the right answer.</li>
+      <li><strong>Change in percentage points</strong> and, for scale questions, the mean before and after, with reverse scoring applied.</li>
+      <li><strong>Objective results:</strong> the average of the questions assigned to each objective.</li>
+    </ul>
+
+    <h2 id="writing-questions">Writing questions that measure your objectives</h2>
+    <p>Each objective needs at least one question that a student could answer differently after the lesson. Ask about one thing per question ("I can name two adults at school I can go to for help", not "I feel safe and know who to ask"). Keep the wording, order and answer scale identical in both surveys, and give the post-survey soon after the last session so other events have less time to affect the answers. For knowledge questions, use a single correct option and enter it as the right answer.</p>
+
+    <h2>Limits: read before you report</h2>
+    <ul>
+      <li>The numbers describe this group's answers before and after. There is no comparison group, so they cannot show that the lesson caused the change, and the tool does not run significance tests.</li>
+      <li>In small groups one student moves a percentage a lot; the tool warns you below 10 students.</li>
+      <li>This is not a diagnostic or clinical tool. It does not screen, assess or interpret the wellbeing of any student.</li>
+      <li>It is an independent tool and is not affiliated with or endorsed by ASCA or any school district. Follow your district's rules for student data.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>The answers are processed by JavaScript in this tab. They never leave your browser and are never stored in it; closing the tab discards them. "Save project file" writes a file to your own device only when you click it. Use student codes instead of names: the tool warns you if a column looks like names, email addresses or phone numbers. If you have accepted analytics cookies, the page records only that a result was built or a chart was downloaded, never the answers, codes, questions or title.</p>
+
+    <h2>Who made this</h2>
+    <p>Built by Metehan Çetin, a Psychological Counselor and Guidance Teacher in Türkiye. Feedback and requests: <a href="https://mc-novatools.com/contact">contact</a>.</p>
+  </article>
+</main>
+
+<footer class="tool-footer">
+  <p>&copy; 2026 MC NovaTools &mdash; Metehan Çetin | <a href="https://mc-novatools.com/contact">Contact</a> | <a href="https://mc-novatools.com/privacy-policy">Privacy</a></p>
+  <p>Descriptive results only; review the numbers before you include them in a report.</p>
+</footer>
+<style>
+.tool-footer { margin-top: 3rem; padding: 1.5rem 1rem; border-top: 1px solid var(--border-default); text-align: center; color: #718096; font-size: 0.8rem; line-height: 1.8; }
+.tool-footer a { color: var(--accent-text); text-decoration: none; }
+</style>
+  </div>
+</body>
+</html>

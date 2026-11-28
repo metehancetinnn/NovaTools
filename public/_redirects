@@ -27,6 +27,41 @@
 /author/editorial /author/novatools-editorial 301
 /author/editorial/ /author/novatools-editorial 301
 
+# Per-topic blog archives were retired (each would list one or two posts);
+# the blog hub lists every published post. The archive files no longer
+# exist, so this cannot collide with native .html handling.
+/blog/categories /blog/ 301
+/blog/categories/ /blog/ 301
+/blog/categories/* /blog/ 301
+
+# Retired 2026-11-27 (docs/research/page-audit.csv, decision D-006). The
+# /guides/ cluster was template text (the same paragraph under every heading,
+# "publish-ready outline and article draft" visible to readers) and the topic
+# map only indexed it. Sources are deleted and every link to them removed;
+# these keep old inbound links useful. Redirects run before static assets.
+/guides /blog/ 301
+/guides/ /blog/ 301
+/guides/* /blog/ 301
+/site-map/topical /categories/ 301
+/site-map/topical.html /categories/ 301
+/site-map/topical/ /categories/ 301
+
+# Duplicate copies that each declared themselves canonical:
+# /about (public/about.html) duplicated /about-us; the article template was an
+# indexable empty page; /blog/<slug> duplicated /blog/articles/<slug>.html,
+# served extensionless (its canonical).
+/about /about-us 301
+/about.html /about-us 301
+/about/ /about-us 301
+/blog/article-template /blog/ 301
+/blog/article-template.html /blog/ 301
+/blog/browser-based-tools-vs-desktop-software-privacy-comparison /blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison 301
+/blog/edit-pdf-without-adobe-acrobat-free-methods /blog/articles/edit-pdf-without-adobe-acrobat-free-methods 301
+/blog/lazy-loading-images-implementation-guide-2026 /blog/articles/lazy-loading-images-implementation-guide-2026 301
+/blog/pdf-financial-records /blog/articles/pdf-financial-records 301
+/blog/rule-of-72-estimate-investment-doubling-time /blog/articles/rule-of-72-estimate-investment-doubling-time 301
+/blog/understanding-json-web-tokens-structure-security /blog/articles/understanding-json-web-tokens-structure-security 301
+
 # NOTE: category, blog, and guides clean URLs are likewise handled by
 # Cloudflare's native `.html`-stripping behavior and intentionally have no
 # rewrite rule here, for the same self-redirect-loop reason described above.

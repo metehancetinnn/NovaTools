@@ -95,23 +95,3 @@ export function canShareFiles() {
   return navigator.share && navigator.canShare && 
     navigator.canShare({ files: [new File([''], 'test.txt', { type: 'text/plain' })] });
 }
-
-/**
- * Register share target in manifest (handled at build time)
- * This function validates the configuration
- */
-export function validateShareTargetConfig() {
-  return {
-    action: '/src/tools/pdf/merge/',
-    method: 'POST',
-    enctype: 'multipart/form-data',
-    params: {
-      title: 'name',
-      text: 'description',
-      url: 'link',
-      files: [
-        { name: 'pdfFiles', accept: ['application/pdf', 'image/*'] }
-      ]
-    }
-  };
-}

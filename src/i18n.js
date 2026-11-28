@@ -872,7 +872,7 @@
       pdf: '/blog/articles/edit-pdf-without-adobe-acrobat-free-methods.html', image: '/blog/articles/lazy-loading-images-implementation-guide-2026.html',
       finance: '/blog/articles/rule-of-72-estimate-investment-doubling-time.html', dev: '/blog/articles/understanding-json-web-tokens-structure-security.html',
       text: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html', converters: '/blog/articles/rule-of-72-estimate-investment-doubling-time.html',
-      data: '/blog/articles/cloud-cost-comparison.html', design: '/blog/articles/lazy-loading-images-implementation-guide-2026.html',
+      data: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html', design: '/blog/articles/lazy-loading-images-implementation-guide-2026.html',
       productivity: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html', security: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
       social: '/blog/articles/lazy-loading-images-implementation-guide-2026.html'
     };

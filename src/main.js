@@ -47,7 +47,7 @@ function getCategoryLabel(categoryName) {
   };
 
   const rawKeys = {
-    pdf: 'PDF Tools', image: 'Image Tools', finance: 'Finance Tools', dev: 'Developer Tools',
+    education: 'School Counseling', finance: 'Finance Tools', dev: 'Developer Tools',
     text: 'Text & Writing', converters: 'Converters', security: 'Security Tools',
     productivity: 'Productivity', data: 'Data Tools', design: 'Design Tools',
     calculators: 'Calculators', social: 'Social Media'
@@ -68,7 +68,7 @@ function getCategoryDescription(category) {
 }
 
 function getCategoryHref(category) {
-  return `/categories/${category.slug}.html`;
+  return category.href || `/categories/${category.slug}.html`;
 }
 
 function getToolHref(slug) {
@@ -154,9 +154,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 const popularTasks = [
-  { key: 'mergePdf', label: 'Merge PDF', slug: 'pdf/merge', icon: 'file-text' },
-  { key: 'compressPdf', label: 'Compress PDF', slug: 'pdf/compress', icon: 'file-text' },
-  { key: 'compressImage', label: 'Compress Image', slug: 'image/compress', icon: 'image' },
+  { key: 'prePostResults', label: 'Pre/Post Results', slug: 'education/pre-post-results', icon: 'trending-up' },
   { key: 'jsonFormatter', label: 'JSON Formatter', slug: 'dev/json-formatter', icon: 'code' },
   { key: 'liveExchange', label: 'Live Exchange', slug: 'finance/live-exchange', icon: 'repeat' },
   { key: 'textAnalysis', label: 'Text Analysis', slug: 'text/text-analysis', icon: 'type' },
@@ -164,52 +162,32 @@ const popularTasks = [
   { key: 'passwordGenerator', label: 'Password Generator', slug: 'security/password-generator', icon: 'shield' }
 ];
 
+// The homepage leads with one product: the Pre/Post Results Builder for school
+// counselors (decision D-013, docs/research/decision-log.md). The rest is a fixed,
+// short list topped up from certified tools, never "every certified tool": listing
+// the whole catalogue made the page ~250px taller on mobile per certified tool.
+// Keys are new (not in the locale files), so the English text below is shown.
+const FEATURED_TOOL_LIMIT = 6;
 const featuredTools = [
   {
-    key: 'pdfMerge',
-    slug: 'pdf/merge',
-    name: 'PDF Merge',
-    description: 'Combine multiple PDF files into one organized document.',
-    category: 'PDF Tools',
-    icon: 'file-text'
-  },
-  {
-    key: 'imageCompress',
-    slug: 'image/compress',
-    name: 'Image Compressor',
-    description: 'Reduce image file sizes for web and email workflows.',
-    category: 'Image Tools',
-    icon: 'image'
-  },
-  {
-    key: 'jsonFormatter',
-    slug: 'dev/json-formatter',
-    name: 'JSON Formatter',
-    description: 'Format, read and validate JSON data before sharing.',
-    category: 'Developer Tools',
-    icon: 'code'
-  },
-  {
-    key: 'liveExchange',
-    slug: 'finance/live-exchange',
-    name: 'Live Exchange Converter',
-    description: 'Convert currency estimates with live-data and cached fallback handling.',
-    category: 'Finance Tools',
+    key: 'prePostResults',
+    slug: 'education/pre-post-results',
+    name: 'Pre/Post Results Builder',
+    description: 'Paste the before and after answers from a counseling lesson or small group and get matched-student results by objective, a chart and a summary paragraph. Nothing is uploaded.',
+    category: 'education',
     icon: 'trending-up'
+  },
+  {
+    key: 'rlsproofHome',
+    slug: 'security/rlsproof',
+    name: 'RLSProof',
+    description: 'Check a Supabase schema for tables and views that anyone with the public key can read or change.',
+    category: 'security',
+    icon: 'shield'
   }
 ];
 
 const categoryPopularTools = {
-  'pdf-tools': [
-    { key: 'pdfMerge', label: 'PDF Merge', slug: 'pdf/merge' },
-    { key: 'pdfCompress', label: 'Compress PDF', slug: 'pdf/compress' },
-    { key: 'pdfToJpg', label: 'PDF to JPG', slug: 'pdf/pdf-to-jpg' }
-  ],
-  'image-tools': [
-    { key: 'imageCompress', label: 'Image Compress', slug: 'image/compress' },
-    { key: 'imageResize', label: 'Image Resize', slug: 'image/image-resizer' },
-    { key: 'imageToWebp', label: 'Image to WebP', slug: 'image/image-to-webp' }
-  ],
   'finance-tools': [
     { key: 'liveExchange', label: 'Live Exchange', slug: 'finance/live-exchange' },
     { key: 'cryptoPrices', label: 'Crypto Prices', slug: 'finance/crypto-prices' },
@@ -242,8 +220,7 @@ const categoryPopularTools = {
   ],
   'social-media-tools': [
     { key: 'utmBuilder', label: 'UTM Builder', slug: 'social/utm-builder' },
-    { key: 'hashtagGenerator', label: 'Hashtag Generator', slug: 'social/hashtag-generator' },
-    { key: 'thumbnail', label: 'Thumbnail', slug: 'social/youtube-thumbnail' }
+    { key: 'hashtagGenerator', label: 'Hashtag Generator', slug: 'social/hashtag-generator' }
   ],
   'productivity-tools': [
     { key: 'pomodoro', label: 'Pomodoro', slug: 'productivity/pomodoro-timer' },
@@ -251,7 +228,7 @@ const categoryPopularTools = {
     { key: 'notes', label: 'Notes', slug: 'productivity/notes' }
   ],
   'data-tools': [
-    { key: 'csvJsonSummary', label: 'CSV/JSON Summary', slug: 'data/csv-json-summarizer' },
+    { key: 'sqlFormatter', label: 'SQL Formatter', slug: 'data/sql-formatter' },
     { key: 'chartBuilder', label: 'Chart Builder', slug: 'data/chart-builder' },
     { key: 'weatherLookup', label: 'Weather Lookup', slug: 'data/weather-lookup' }
   ],
@@ -262,60 +239,56 @@ const categoryPopularTools = {
   ]
 };
 
+// Each card names the article it actually opens. The previous three cards had
+// three different titles ("Tool selection map", "Compress images checklist",
+// "Base64 use cases") and all linked to the same article.
 const blogPosts = [
   {
-    key: 'toolSelection',
-    title: 'Tool selection map for new users',
-    excerpt: 'Choose the right category and tool quickly when you start a new task.',
-    category: 'Workflow',
+    key: 'browserVsDesktopPrivacy',
+    title: 'Browser-based tools vs desktop software: a privacy comparison',
+    excerpt: 'When a browser tool keeps a file on your device, when it does not, and when desktop software is the safer choice.',
+    category: 'Privacy',
     href: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
     image: '/images/blog-covers/workflow-planning.svg',
     minutes: '5 min'
   },
   {
-    key: 'imageQuality',
-    title: 'Compress images for web quality checklist',
-    excerpt: 'Keep quality, format and page speed checks in view while reducing image size.',
-    category: 'Image',
-    href: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
-    image: '/images/blog-covers/image-workflow.svg',
-    minutes: '6 min'
+    key: 'ruleOf72',
+    title: 'The rule of 72: estimate how long an investment takes to double',
+    excerpt: 'Where the shortcut comes from, how close it gets to the exact answer, and when not to rely on it.',
+    category: 'Finance',
+    href: '/blog/articles/rule-of-72-estimate-investment-doubling-time.html',
+    image: '/images/blog-covers/workflow-planning.svg',
+    minutes: '5 min'
   },
   {
-    key: 'base64Uses',
-    title: 'Base64 converter common use cases',
-    excerpt: 'Encoding, decoding and pre-share checks for developer workflows.',
+    key: 'jwtStructure',
+    title: 'Understanding JSON Web Tokens',
+    excerpt: 'Anyone can decode a JWT payload. What the three parts contain, where tokens get exposed, and how to debug them safely.',
     category: 'Developer',
-    href: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
+    href: '/blog/articles/understanding-json-web-tokens-structure-security.html',
     image: '/images/blog-covers/developer-utilities.svg',
     minutes: '4 min'
   }
 ];
 
+// Each step opens a different, working page.
 const workflowCards = [
   {
-    key: 'pdfEmail',
-    title: 'Prepare a PDF for email',
-    description: 'Compress the file, confirm readability, then use the PDF checklist before sending.',
-    tool: ['Compress PDF', 'pdf/compress'],
-    guide: ['PDF email checklist', '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html'],
-    category: ['PDF tools', '/categories/pdf-tools.html']
+    key: 'lessonResults',
+    title: 'Report the results of a counseling lesson or small group',
+    description: 'Match the before and after answers by student code, check that every objective has a question, then copy the chart and summary into your results report.',
+    tool: ['Pre/Post Results Builder', 'education/pre-post-results'],
+    guide: ['Write questions that measure an objective', '/tools/education/pre-post-results/#writing-questions'],
+    category: ['All verified tools', '/categories/']
   },
   {
-    key: 'developerData',
-    title: 'Clean developer data',
-    description: 'Format JSON, compare text changes and keep shareable snippets readable.',
-    tool: ['JSON Formatter', 'dev/json-formatter'],
-    guide: ['Debugging tool chain', '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html'],
-    category: ['Developer tools', '/categories/developer-tools.html']
-  },
-  {
-    key: 'lighterImages',
-    title: 'Publish lighter images',
-    description: 'Resize, compress and review file names before uploading images to a site or email.',
-    tool: ['Image Compressor', 'image/compress'],
-    guide: ['Image quality checklist', '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html'],
-    category: ['Image tools', '/categories/image-tools.html']
+    key: 'supabaseRelease',
+    title: 'Check a Supabase app before a release',
+    description: 'Find tables and views the public key can reach, then see what a leaked token would expose.',
+    tool: ['RLSProof', 'security/rlsproof'],
+    guide: ['What a JWT exposes', '/blog/articles/understanding-json-web-tokens-structure-security.html'],
+    category: ['Security tools', '/categories/security-tools.html']
   }
 ];
 
@@ -327,7 +300,7 @@ const workflowCards = [
 
 function iconForCategory(category) {
   const icons = {
-    pdf: 'file-text', image: 'image', finance: 'trending-up', converters: 'repeat',
+    education: 'trending-up', finance: 'trending-up', converters: 'repeat',
     dev: 'code', text: 'type', data: 'database', design: 'palette',
     security: 'shield', productivity: 'zap', calculators: 'calculator', social: 'zap'
   };
@@ -347,23 +320,25 @@ function renderFeaturedTools() {
   const container = document.getElementById('featuredTools');
   if (!container) return;
 
-  // Every certified tool, in curated order first. A hand-written shortlist went
-  // stale as soon as certification changed and left the section with two cards
-  // and an empty half-screen underneath.
+  // The curated shortlist, minus anything that lost certification. If fewer than
+  // the limit survive, top up from other certified tools so the section never
+  // shows a near-empty grid; it never grows past the limit, whatever the catalogue
+  // size (tests/e2e/accessibility.spec.mjs holds that line).
   const curated = featuredTools.filter((tool) => certifiedPaths.has(getToolHref(tool.slug)));
   const curatedPaths = new Set(curated.map((tool) => getToolHref(tool.slug)));
-  const rest = certifiedPublicTools
+  const topUp = certifiedPublicTools
     .filter((tool) => !curatedPaths.has(canonicalToolPath(tool)))
+    .slice(0, Math.max(0, FEATURED_TOOL_LIMIT - curated.length))
     .map((tool) => ({
       key: tool.id,
       slug: canonicalToolPath(tool).replace(/^\/tools\//, '').replace(/\/$/, ''),
       name: tool.nameEn || tool.name || tool.id,
       description: (typeof tool.description === 'string' ? tool.description : tool.description?.en || tool.description?.tr) || '',
-      category: getCategoryLabel(tool.category) || 'Tools',
+      category: tool.category,
       icon: iconForCategory(tool.category)
     }));
 
-  setGridMarkup(container, [...curated, ...rest].map((tool) => `
+  setGridMarkup(container, [...curated, ...topUp].slice(0, FEATURED_TOOL_LIMIT).map((tool) => `
     <article class="featured-tool-card">
       <div class="featured-tool-card__icon">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -484,8 +459,8 @@ function renderWorkflowCards() {
         <h3>${title}</h3>
         <p>${description}</p>
         <div class="workflow-card__steps">
-          <a href="${getToolHref(workflow.tool[1])}"><strong>${t('home.workflows.steps.tool', 'Tool')}</strong>${toolLabel}</a>
-          <a href="${workflow.guide[1]}"><strong>${t('home.workflows.steps.guide', 'Guide')}</strong>${guideLabel}</a>
+          <a href="${getToolHref(workflow.tool[1])}"><strong>${t('home.workflows.steps.check', 'Check')}</strong>${toolLabel}</a>
+          <a href="${workflow.guide[1]}"><strong>${t('home.workflows.steps.next', 'Then')}</strong>${guideLabel}</a>
           <a href="${workflow.category[1]}"><strong>${t('home.workflows.steps.browse', 'Browse')}</strong>${categoryLabel}</a>
         </div>
       </article>

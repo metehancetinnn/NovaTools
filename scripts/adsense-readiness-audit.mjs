@@ -93,7 +93,9 @@ const publicHtml = [
   ...blogPages
 ];
 
-if (categoryPages.length < 12) errors.push(`Expected at least 12 category pages; found ${categoryPages.length}`);
+// The PDF and Image hubs were retired on 2026-11-27 (decision D-012), leaving 10.
+// The floor guards against a build that loses hubs; it is not a page-count target.
+if (categoryPages.length < 10) errors.push(`Expected at least 10 category pages; found ${categoryPages.length}`);
 if (toolPages.length < 100) warnings.push(`Expected roughly 100+ tool pages; found ${toolPages.length}`);
 
 for (const file of ['index.html', ...categoryPages]) {

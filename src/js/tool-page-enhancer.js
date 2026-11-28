@@ -24,14 +24,12 @@ import {
 import { setupThemePreference } from '../components/navigation.mjs';
 
 const CATEGORY_LABELS = {
-  pdf: 'PDF', image: 'Image', finance: 'Finance', dev: 'Developer', text: 'Text',
+  education: 'School counseling', finance: 'Finance', dev: 'Developer', text: 'Text',
   converters: 'Converter', data: 'Data', design: 'Design', productivity: 'Productivity',
   security: 'Security', social: 'Social Media', news: 'News', religious: 'Calendar'
 };
 
 const CATEGORY_ROUTES = {
-  pdf: 'pdf-tools',
-  image: 'image-tools',
   finance: 'finance-tools',
   dev: 'developer-tools',
   text: 'text-writing',
@@ -481,7 +479,10 @@ function enhanceWorkspace(tool, slug, { augmentContent = true } = {}) {
     const alreadyNamed = element.getAttribute('aria-label')
       || element.getAttribute('aria-labelledby')
       || element.labels?.length
-      || element.closest('label');
+      || element.closest('label')
+      // A button or link already has a name: its visible text. Overriding it with
+      // the element id ("load Sample") hid the real label from screen readers.
+      || ((element.tagName === 'BUTTON' || element.tagName === 'A') && element.textContent?.trim());
     if (!alreadyNamed) {
       const rawLabel = element.getAttribute('placeholder')
         || element.getAttribute('name')

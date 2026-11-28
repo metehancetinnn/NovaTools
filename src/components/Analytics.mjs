@@ -209,10 +209,10 @@ function organizationSchema() {
       width: 512,
       height: 512
     },
+    // github.com/mc-novatools and x.com/mcnovatools returned 404 on
+    // 2026-11-26; list only the public repository that actually exists.
     sameAs: [
-      'https://github.com/mc-novatools',
-      'https://twitter.com/mcnovatools',
-      'https://linkedin.com/company/mc-novatools'
+      'https://github.com/metehancetinnn/NovaTools'
     ],
     contactPoint: {
       '@type': 'ContactPoint',
@@ -349,14 +349,15 @@ export function generateSchemaJsonLd(pageType, pageData = {}, route = '/') {
       '@context': 'https://schema.org',
       '@type': 'Person',
       '@id': `${canonical}#person`,
-      name: isMetehan ? 'Metehan Çetin, LPC' : 'NovaTools Editorial Review',
+      // Only verifiable facts: no licence suffix, no invented education, and
+      // sameAs limited to a profile that resolves (checked 2026-11-26).
+      name: isMetehan ? 'Metehan Çetin' : 'NovaTools Editorial Review',
       jobTitle: isMetehan ? 'Founder, Editor and Browser Workflow Reviewer' : 'Editorial Quality Reviewer',
       url: canonical,
       image: `${SITE_ORIGIN}/assets/authors/${isMetehan ? 'metehan-cetin' : 'novatools-editorial'}.svg`,
       worksFor: { '@id': `${SITE_ORIGIN}/#organization` },
-      alumniOf: { '@type': 'EducationalOrganization', name: isMetehan ? 'Professional counseling and applied web-product training' : 'MC NovaTools editorial workflow training' },
       knowsAbout: ['PDF Processing', 'Image Optimization', 'Web Development'],
-      sameAs: ['https://linkedin.com/company/mc-novatools', 'https://github.com/mc-novatools', 'https://twitter.com/mcnovatools']
+      ...(isMetehan ? { sameAs: ['https://github.com/metehancetinnn'] } : {})
     }];
   } else if (pageType === 'legal') {
     schemas = [{

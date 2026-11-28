@@ -5,39 +5,23 @@
 
 export const categories = [
   {
-    slug: 'pdf-tools',
-    name: 'PDF Tools',
-    shortName: 'PDF',
-    description: 'Convert, merge, split, compress and edit PDF files with powerful browser-based tools.',
-    shortDescription: 'Edit and convert PDFs',
-    icon: 'file-text',
-    color: '#EF4444',
-    gradient: 'from-red-500/20 to-orange-500/20',
+    slug: 'education',
+    // One tool, so the card opens it directly instead of a hub page.
+    href: '/tools/education/pre-post-results/',
+    name: 'School Counseling',
+    shortName: 'Counseling',
+    description: 'Turn before and after survey answers from a counseling lesson or small group into results by objective, a chart and a summary.',
+    shortDescription: 'Pre/post results for counselors',
+    icon: 'trending-up',
+    color: '#2563EB',
+    gradient: 'from-blue-500/20 to-indigo-500/20',
     featured: true,
     toolCount: 0,
-    tags: ['pdf', 'convert', 'merge', 'split', 'compress'],
+    tags: ['school counseling', 'pre post', 'survey', 'results'],
     meta: {
-      title: 'Free PDF Tools Online - Merge, Split, Convert | NovaTools',
-      description: 'Free online PDF tools: merge PDFs, split pages, compress files, convert to Word/Excel. 100% private, works in your browser.',
-      keywords: 'pdf merge, pdf split, pdf compress, pdf to word, pdf editor'
-    }
-  },
-  {
-    slug: 'image-tools',
-    name: 'Image Tools',
-    shortName: 'Image',
-    description: 'Compress, convert, resize, and enhance images. Support for WebP, AVIF, PNG, JPG and more.',
-    shortDescription: 'Optimize and edit images',
-    icon: 'image',
-    color: '#8B5CF6',
-    gradient: 'from-purple-500/20 to-pink-500/20',
-    featured: true,
-    toolCount: 0,
-    tags: ['image', 'compress', 'convert', 'resize', 'webp'],
-    meta: {
-      title: 'Free Image Tools - Compress, Convert, Resize | NovaTools',
-      description: 'Free image optimization tools: compress images, convert formats, resize photos. WebP, AVIF, PNG, JPG support.',
-      keywords: 'image compressor, convert image, webp converter, resize photo'
+      title: 'Pre/Post Results Builder for School Counselors | MC NovaTools',
+      description: 'Turn before and after survey answers into matched-student results by objective, a chart and a summary. Answers stay in your browser.',
+      keywords: 'pre post survey results, school counselor data'
     }
   },
   {

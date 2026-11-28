@@ -42,7 +42,8 @@ test.describe('Homepage hero and tool search', () => {
       ['epoch', /timestamp/i],
       ['kg to lbs', /unit converter/i],
       ['how old am i', /age/i],
-      ['compress pdf', /pdf/i]
+      ['pre post', /pre\/post/i],
+      ['counselor', /pre\/post/i]
     ]) {
       await input.fill(query);
       const first = page.locator('#homeSearchResults [role="option"]').first();
@@ -147,9 +148,12 @@ test.describe('Homepage hero and tool search', () => {
     const claimed = Number((text.match(/(\d+)\s+verified tools/i) || [])[1]);
     expect(Number.isFinite(claimed)).toBe(true);
 
-    // The number has to match the tools the homepage is willing to link to.
+    // The number has to match the tools the homepage is willing to link to. The
+    // featured grid is a fixed shortlist, so count through the category cards,
+    // which each state how many certified tools their hub lists.
     const openable = await page.evaluate(() =>
-      document.querySelectorAll('#featuredTools .featured-tool-card').length);
+      [...document.querySelectorAll('#categoriesGrid .category-nav-card__count')]
+        .reduce((sum, node) => sum + (parseInt(node.textContent, 10) || 0), 0));
     expect(claimed).toBe(openable);
   });
 });

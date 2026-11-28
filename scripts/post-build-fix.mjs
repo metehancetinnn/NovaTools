@@ -822,7 +822,13 @@ function stampToolHelpfulContent() {
     // Each tool page now carries unique, tool-specific copy (tool-description
     // article + i18n seo-section), so this duplicated template section is removed.
     let next = html.replace(/<section\b[^>]*data-phase4-eeat="true"[\s\S]*?<\/section>/i, '');
-    next = next.replace(/<meta name="description" content="[^"]*"\s*\/?>/i, `<meta name="description" content="${escapeAttr(uniqueDescription(title, item.category, item.slug, item.relative))}">`);
+    // Keep the page's own description when it has a real one. Replacing every
+    // description with uniqueDescription() shipped text such as "... For tools
+    // finance compound interest; route qgq." to search results on every tool page.
+    const ownDescription = next.match(/<meta name="description" content="([^"]*)"/i)?.[1] || '';
+    if (ownDescription.trim().length < 70) {
+      next = next.replace(/<meta name="description" content="[^"]*"\s*\/?>/i, `<meta name="description" content="${escapeAttr(uniqueDescription(title, item.category, item.slug, item.relative))}">`);
+    }
     // Only add a last-updated line to pages that do not already state one.
     // This used to inject a fixed 2026-06-03 unconditionally, so pages that
     // carried their own date showed two "Last updated" lines with two different
@@ -842,8 +848,6 @@ function stampToolHelpfulContent() {
 
 
 const cleanCategoryAliases = [
-  ['pdf-tools.html', 'pdf'],
-  ['image-tools.html', 'image'],
   ['developer-tools.html', 'developer'],
   ['finance-tools.html', 'finance']
 ];
@@ -922,9 +926,8 @@ const keyFiles = [
   'blog/index.html',
   'tools/finance/tax/index.html',
   ...financeToolSlugs.map((slug) => `finance/${slug}/index.html`),
-  'tools/pdf/merge/index.html',
   'categories/converters.html',
-  'categories/pdf-tools.html',
+  'categories/finance-tools.html',
 ];
 
 console.log('\n📋 Verification:');

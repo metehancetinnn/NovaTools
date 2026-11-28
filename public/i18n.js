@@ -789,8 +789,7 @@
     guide.className = 'site-guide-chatbot';
     guide.setAttribute('aria-label', t('surface.chatbot.title', 'NovaTools guide'));
     const recommendations = [
-      { match: 'pdf,merge,compress,split,file', title: 'PDF workflow', href: '/categories/pdf-tools.html', guide: '/blog/articles/edit-pdf-without-adobe-acrobat-free-methods.html' },
-      { match: 'image,png,jpg,webp,photo,resize', title: 'Image workflow', href: '/categories/image-tools.html', guide: '/blog/articles/lazy-loading-images-implementation-guide-2026.html' },
+      { match: 'pre,post,survey,counsel,counselor,school,lesson,objective,group', title: 'School counseling results', href: '/tools/education/pre-post-results/', guide: '/tools/education/pre-post-results/#writing-questions' },
       { match: 'json,regex,code,developer,api', title: 'Developer workflow', href: '/categories/developer-tools.html', guide: '/blog/articles/understanding-json-web-tokens-structure-security.html' },
       { match: 'money,finance,tax,loan,mortgage,currency', title: 'Finance workflow', href: '/categories/finance-tools.html', guide: '/blog/articles/rule-of-72-estimate-investment-doubling-time.html' }
     ];
@@ -861,28 +860,22 @@
     const pathMatch = window.location.pathname.match(/\/tools\/([^/]+)\/([^/]+)\/?/);
     const category = pathMatch?.[1] || 'tools';
     const categoryRoutes = {
-      pdf: 'pdf-tools', image: 'image-tools', finance: 'finance-tools', dev: 'developer-tools', text: 'text-writing',
+      finance: 'finance-tools', dev: 'developer-tools', text: 'text-writing',
       converters: 'converters', data: 'data-tools', design: 'design-tools', productivity: 'productivity-tools', security: 'security-tools', social: 'social-media-tools'
     };
     const guideByCategory = {
       pdf: '/blog/articles/edit-pdf-without-adobe-acrobat-free-methods.html', image: '/blog/articles/lazy-loading-images-implementation-guide-2026.html',
       finance: '/blog/articles/rule-of-72-estimate-investment-doubling-time.html', dev: '/blog/articles/understanding-json-web-tokens-structure-security.html',
       text: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html', converters: '/blog/articles/rule-of-72-estimate-investment-doubling-time.html',
-      data: '/blog/articles/cloud-cost-comparison.html', design: '/blog/articles/lazy-loading-images-implementation-guide-2026.html',
+      data: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html', design: '/blog/articles/lazy-loading-images-implementation-guide-2026.html',
       productivity: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html', security: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
       social: '/blog/articles/lazy-loading-images-implementation-guide-2026.html'
     };
     const categoryRoute = `/categories/${categoryRoutes[category] || 'index'}.html`;
     const guideRoute = guideByCategory[category] || '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html';
     const workflowByCategory = {
-      pdf: [
-        ['Combine', '/tools/pdf/merge/'], ['Reduce size', '/tools/pdf/compress/'], ['Add page numbers', '/tools/pdf/pdf-page-number/']
-      ],
-      image: [
-        ['Crop', '/tools/image/image-cropper/'], ['Compress', '/tools/image/compress/'], ['Convert format', '/tools/image/convert/']
-      ],
       dev: [
-        ['Format code', '/tools/dev/code-formatter/'], ['Validate JSON', '/tools/dev/json-validator/'], ['Create checksum', '/tools/data/checksum-calculator/']
+        ['Format code', '/tools/dev/code-formatter/'], ['Validate JSON', '/tools/dev/json-validator/'], ['Minify CSS', '/tools/dev/css-minifier/']
       ],
       finance: [
         ['Compare scenarios', '/tools/finance/compound-interest/'], ['Check affordability', '/tools/finance/mortgage-refinance/'], ['Track expenses', '/tools/productivity/expense-tracker/']
@@ -891,7 +884,7 @@
         ['Clean case', '/tools/text/case-converter/'], ['Check length', '/tools/text/character-counter/'], ['Compare versions', '/tools/text/text-diff/']
       ],
       data: [
-        ['Inspect CSV', '/tools/data/csv-viewer/'], ['Convert to JSON', '/tools/data/csv-to-json/'], ['Build a chart', '/tools/data/chart-builder/']
+        ['Format SQL', '/tools/data/sql-formatter/'], ['Create a vCard', '/tools/data/vcf-generator/'], ['Build a chart', '/tools/data/chart-builder/']
       ],
       design: [
         ['Create a logo', '/tools/design/logo-maker/'], ['Build a business card', '/tools/design/business-card-maker/'], ['Generate a QR code', '/tools/design/qr-code-designer/']
@@ -903,7 +896,7 @@
         ['Generate a password', '/tools/security/password-generator/'], ['Check strength', '/tools/security/password-strength/'], ['Create a hash', '/tools/security/hash-generator/']
       ],
       social: [
-        ['Resize image', '/tools/social/social-image-resizer/'], ['Generate hashtags', '/tools/social/hashtag-generator/'], ['Create app icon', '/tools/social/app-icon-generator/']
+        ['Build a UTM link', '/tools/social/utm-builder/'], ['Generate hashtags', '/tools/social/hashtag-generator/']
       ],
       converters: [
         ['Convert units', '/tools/converters/unit-converter/'], ['Calculate percentage', '/tools/converters/percentage-calculator/'], ['Convert number base', '/tools/converters/number-base-converter/']

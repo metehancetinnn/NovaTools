@@ -5,10 +5,7 @@ const UNAVAILABLE_HARDENING_ROUTES = [
   '/tools/text/text-summarizer/',
   '/tools/text/text-analysis/',
   '/tools/text/simple-translator/',
-  '/tools/data/chart-builder/',
-  '/tools/data/csv-json-summarizer/',
-  '/tools/data/audio-spectrum/',
-  '/tools/image/exif-viewer/'
+  '/tools/data/chart-builder/'
 ];
 
 function watchPageErrors(page) {

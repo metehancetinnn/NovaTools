@@ -28,7 +28,7 @@ const SECTIONS = {
   converters: { hub: '/categories/converters.html', hubLabel: 'Converters', article: 'rule-of-72-estimate-investment-doubling-time' },
   calculators: { hub: '/categories/calculator-tools.html', hubLabel: 'Calculator Tools', article: 'rule-of-72-estimate-investment-doubling-time' },
   dev: { hub: '/categories/developer-tools.html', hubLabel: 'Developer Tools', article: 'understanding-json-web-tokens-structure-security' },
-  data: { hub: '/categories/data-tools.html', hubLabel: 'Data Tools', article: 'cloud-cost-comparison' },
+  data: { hub: '/categories/data-tools.html', hubLabel: 'Data Tools', article: 'understanding-json-web-tokens-structure-security' },
   design: { hub: '/categories/design-tools.html', hubLabel: 'Design Tools', article: 'browser-based-tools-vs-desktop-software-privacy-comparison' },
   productivity: { hub: '/categories/productivity-tools.html', hubLabel: 'Productivity Tools', article: 'browser-based-tools-vs-desktop-software-privacy-comparison' },
   security: { hub: '/categories/security-tools.html', hubLabel: 'Security Tools', article: 'browser-based-tools-vs-desktop-software-privacy-comparison' },

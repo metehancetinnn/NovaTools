@@ -8,7 +8,7 @@ module.exports = {
       url: [
         'http://localhost/',
         'http://localhost/pricing/',
-        'http://localhost/tools/pdf/compress/',
+        'http://localhost/tools/finance/compound-interest/',
       ],
       numberOfRuns: 2,
       settings: {

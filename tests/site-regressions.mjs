@@ -70,8 +70,6 @@ for (const route of [
   '/cookie-policy.html',
   '/security.html',
   '/kvkk-aydinlatma-metni.html',
-  '/categories/pdf-tools.html',
-  '/categories/image-tools.html',
   '/categories/finance-tools.html',
   '/categories/developer-tools.html',
   '/categories/security-tools.html',
@@ -80,6 +78,10 @@ for (const route of [
   '/categories/design-tools.html'
 ]) {
   assert.ok(sitemapGenerator.includes(`['${route}'`), `Sitemap generator is missing ${route}`);
+}
+// Retired on 2026-11-27 (src/server/http/retired-routes.mjs): they answer 410 and must not be listed.
+for (const route of ['/categories/pdf-tools.html', '/categories/image-tools.html']) {
+  assert.ok(!sitemapGenerator.includes(`['${route}'`), `Sitemap generator still lists retired ${route}`);
 }
 
 const notFound = read('404.html');
@@ -116,9 +118,6 @@ assert.doesNotMatch(
   'Recent tool history must remain browser-local.'
 );
 for (const workflowRoute of [
-  '/tools/pdf/merge/',
-  '/tools/pdf/compress/',
-  '/tools/image/image-cropper/',
   '/tools/dev/json-validator/',
   '/tools/text/text-diff/',
   '/tools/design/qr-code-designer/',
@@ -134,8 +133,6 @@ for (const workflowRoute of [
 }
 
 const categorySitemapContract = new Map([
-  ['/categories/pdf-tools.html', 'pdf'],
-  ['/categories/image-tools.html', 'image'],
   ['/categories/finance-tools.html', 'finance'],
   ['/categories/developer-tools.html', 'dev'],
   ['/categories/text-writing.html', 'text'],
@@ -168,7 +165,7 @@ for (const slug of ['retirement', 'student-loan']) {
   );
 }
 // The /tools/<category>/ aliases are copies of the hubs; listing them would publish each hub twice.
-for (const alias of ['/tools/pdf/', '/tools/image/', '/tools/developer/', '/tools/finance/']) {
+for (const alias of ['/tools/developer/', '/tools/finance/']) {
   assert.ok(!toolsSitemap.includes(`https://mc-novatools.com${alias}<`), `${alias} duplicates its category hub and must not be in the sitemap`);
 }
 assert.match(
@@ -404,3 +401,11 @@ for (const qualityGate of [
 }
 
 console.log('Site regression checks passed.');
+
+// Tool pages keep their own meta description; the generated fallback ("... route qgq.")
+// is only for pages without a real one.
+assert.match(
+  read('scripts/post-build-fix.mjs'),
+  /ownDescription\.trim\(\)\.length < 70/,
+  'post-build-fix must not overwrite a tool page\'s own meta description.'
+);

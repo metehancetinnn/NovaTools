@@ -1,25 +1,25 @@
 # Structured Data Graph Validation Report
 
-Generated: 2026-09-12T16:24:04.383Z
+Generated: 2026-11-28T06:49:52.173Z
 
 ## Scope
 
-- HTML files scanned: 617
-- HTML files with JSON-LD: 382
-- Unique @id definitions: 1285
+- HTML files scanned: 336
+- HTML files with JSON-LD: 218
+- Unique @id definitions: 793
 
 ## Type summary
 
-- CollectionPage: 24
-- FAQPage: 260
-- HowTo: 260
-- ItemList: 24
+- CollectionPage: 20
+- FAQPage: 178
+- HowTo: 178
+- ItemList: 20
 - Organization: 5
 - Person: 3
 - ProfilePage: 6
-- SoftwareApplication: 262
-- TechArticle: 90
-- WebPage: 352
+- SoftwareApplication: 180
+- TechArticle: 12
+- WebPage: 192
 - WebSite: 2
 
 ## @id consistency

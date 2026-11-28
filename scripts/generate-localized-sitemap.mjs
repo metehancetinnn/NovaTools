@@ -68,18 +68,14 @@ const staticPages = [
   [blogHubPath(fallbackBlogLocale), '0.7', 'weekly']
 ];
 
-const blogCategoryPages = [
-  '/blog/categories/pdf-document-management.html',
-  '/blog/categories/image-processing-web-performance.html',
-  '/blog/categories/developer-tools-coding.html',
-  '/blog/categories/finance-calculators.html',
-  '/blog/categories/productivity-tool-guides.html'
-];
+// The per-topic blog archives were retired once the blog was narrowed to its
+// editorial scope (src/data/blog-editorial-scope.js): each would have listed
+// one or two posts, which is a thin page. /blog/ lists every published post,
+// and public/_redirects sends the old archive URLs there.
+const blogCategoryPages = [];
 
 const categoryPages = [
   ['/categories/index.html', '0.8', 'weekly'],
-  ['/categories/pdf-tools.html', '0.8', 'weekly', 'pdf'],
-  ['/categories/image-tools.html', '0.8', 'weekly', 'image'],
   ['/categories/finance-tools.html', '0.8', 'weekly', 'finance'],
   ['/categories/developer-tools.html', '0.8', 'weekly', 'dev'],
   ['/categories/text-writing.html', '0.8', 'weekly', 'text'],
@@ -90,7 +86,7 @@ const categoryPages = [
   ['/categories/productivity-tools.html', '0.8', 'weekly', 'productivity'],
   ['/categories/data-tools.html', '0.8', 'weekly', 'data'],
   ['/categories/design-tools.html', '0.8', 'weekly', 'design']
-  // /tools/{pdf,image,developer,finance}/ are copies of the hubs above that name the hub as
+  // /tools/{developer,finance}/ are copies of the hubs above that name the hub as
   // canonical (scripts/post-build-fix.mjs), so they are not listed separately.
 ];
 

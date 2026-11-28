@@ -5,18 +5,21 @@ const DEFAULT_LOCALE = 'en';
 const DESCRIPTION_LIMIT = 160;
 const TITLE_LIMIT = 60;
 
+// Mirrors the static <title>/<meta> in index.html; this runs after load and
+// replaces them, so it must say the same thing. It used to claim "110+ free
+// online tools" while 27 tools were certified and listed.
 const HOME_COPY = {
   en: {
-    title: 'NovaTools – Free Online Tools for PDF, Image, Text & More',
-    description: '110+ free online tools for PDF editing, image processing, text analysis, and finance calculations. Your data stays in your browser; no signup required.'
+    title: 'Pre/Post Results for School Counselors | MC NovaTools',
+    description: 'Turn before and after survey answers from a counseling lesson into matched-student results, a chart and a summary paragraph. Free; nothing is uploaded.'
   },
   tr: {
-    title: 'NovaTools – Ücretsiz Araçlar | PDF, Görüntü ve Metin',
-    description: '110+ ücretsiz online araç; PDF düzenleme, görüntü işleme, metin analizi ve finans hesaplamaları. Verileriniz tarayıcınızda kalır, kayıt gerekmez.'
+    title: 'Rehberlik Etkinliği Ön Test / Son Test Sonuçları | MC NovaTools',
+    description: 'Ön test ve son test cevaplarını öğrenci koduyla eşleştirin; hedef bazında sonuç, grafik ve özet paragraf alın. Cevaplar yüklenmez; arayüz şimdilik İngilizce.'
   },
   ar: {
-    title: 'NovaTools – أدوات مجانية للملفات والصور والنصوص',
-    description: 'أكثر من 110 أدوات مجانية عبر الإنترنت لملفات PDF والصور والنصوص والحسابات المالية. تبقى بياناتك في متصفحك ولا يلزم التسجيل.'
+    title: 'MC NovaTools – نتائج الاستبيان القبلي والبعدي للمرشدين',
+    description: 'حوّل إجابات الاستبيان قبل الدرس وبعده إلى نتائج حسب الهدف مع رسم بياني وملخص، في متصفحك ودون رفع البيانات.'
   }
 };
 

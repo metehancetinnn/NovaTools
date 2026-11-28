@@ -10,8 +10,8 @@ export default {
   "schemaVersion": 1,
   "measurement": {
     "description": "Share of an article's sentences (8+ words) that appear verbatim in other articles.",
-    "corpusSize": 130,
-    "sharedSentenceAppearsInAtLeast": 26,
+    "corpusSize": 90,
+    "sharedSentenceAppearsInAtLeast": 18,
     "maxSharedSentenceRatioForPublication": 0.15
   },
   "articles": [
@@ -21,8 +21,8 @@ export default {
       "sentences": 85,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "age-calculator-for-forms-and-records",
@@ -31,7 +31,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "auto-insurance-savings",
@@ -39,8 +39,8 @@ export default {
       "sentences": 82,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "base64-converter-common-use-cases",
@@ -49,7 +49,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "base64-vs-url-encoding",
@@ -58,16 +58,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7818,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "78% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "batch-image-resize-workflow",
-      "source": "src/blog/articles/batch-image-resize-workflow.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "78% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "best-credit-cards-2026",
@@ -75,8 +66,8 @@ export default {
       "sentences": 89,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "blog-publishing-tool-workflow",
@@ -85,7 +76,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "bmi-calculator-result-context",
@@ -94,7 +85,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "browser-based-tools-vs-desktop-software-privacy-comparison",
@@ -112,7 +103,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "browser-tool-empty-state-loading-success",
@@ -121,7 +112,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "budget-before-large-purchase-workflow",
@@ -130,52 +121,34 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "case-converter-cleanup-workflow",
       "source": "src/blog/articles/case-converter-cleanup-workflow.html",
       "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
+      "sharedSentences": 32,
+      "sharedRatio": 0.3478,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "35% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "character-counter-for-meta-descriptions",
       "source": "src/blog/articles/character-counter-for-meta-descriptions.html",
       "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
+      "sharedSentences": 32,
+      "sharedRatio": 0.3478,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "checksum-calculator-file-verification",
-      "source": "src/blog/articles/checksum-calculator-file-verification.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "35% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "clean-text-before-spreadsheet-import",
       "source": "src/blog/articles/clean-text-before-spreadsheet-import.html",
       "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
+      "sharedSentences": 32,
+      "sharedRatio": 0.3478,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "client-side-pdf-workflow-limits",
-      "source": "src/blog/articles/client-side-pdf-workflow-limits.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "35% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "cloud-cost-calculator-small-team-guide",
@@ -184,7 +157,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "cloud-cost-comparison",
@@ -192,8 +165,8 @@ export default {
       "sentences": 74,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "code-formatter-review-before-sharing",
@@ -202,7 +175,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "color-converter-design-token-workflow",
@@ -211,7 +184,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "compare-loan-options-with-clear-assumptions",
@@ -220,7 +193,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "compound-interest-scenarios-guide",
@@ -229,25 +202,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "compress-images-for-web-quality-checklist",
-      "source": "src/blog/articles/compress-images-for-web-quality-checklist.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "compress-pdf-for-email-without-ruining-readability",
-      "source": "src/blog/articles/compress-pdf-for-email-without-ruining-readability.html",
-      "sentences": 87,
-      "sharedSentences": 50,
-      "sharedRatio": 0.5747,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "57% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "content-review-before-client-delivery",
@@ -256,16 +211,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "convert-png-to-jpg-when-file-size-matters",
-      "source": "src/blog/articles/convert-png-to-jpg-when-file-size-matters.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "credit-score-hacks",
@@ -273,8 +219,8 @@ export default {
       "sentences": 82,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "crypto-tax-guide",
@@ -282,8 +228,8 @@ export default {
       "sentences": 114,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "crypto-tax-records-prep-workflow",
@@ -292,7 +238,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "css-minifier-before-production",
@@ -301,34 +247,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "csv-to-json-clean-conversion-guide",
-      "source": "src/blog/articles/csv-to-json-clean-conversion-guide.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "csv-to-json-vs-json-to-csv",
-      "source": "src/blog/articles/csv-to-json-vs-json-to-csv.html",
-      "sentences": 110,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7818,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "78% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "csv-viewer-before-import-checklist",
-      "source": "src/blog/articles/csv-viewer-before-import-checklist.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "currency-converter-for-estimates-not-final-prices",
@@ -337,7 +256,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "data-cleanup-before-dashboard-import",
@@ -346,7 +265,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "debt-consolidation-guide",
@@ -354,8 +273,8 @@ export default {
       "sentences": 101,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "developer-debugging-tool-chain",
@@ -364,34 +283,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "duplicate-finder-digital-cleanup-workflow",
-      "source": "src/blog/articles/duplicate-finder-digital-cleanup-workflow.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "duplicate-finder-vs-file-organizer",
-      "source": "src/blog/articles/duplicate-finder-vs-file-organizer.html",
-      "sentences": 110,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7818,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "78% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "edit-pdf-without-adobe-acrobat-free-methods",
-      "source": "src/i18n/blog/en.json",
-      "sentences": 56,
-      "sharedSentences": 0,
-      "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "emergency-fund-guide",
@@ -399,44 +291,8 @@ export default {
       "sentences": 122,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
-    },
-    {
-      "slug": "file-merger-recombine-export-parts",
-      "source": "src/blog/articles/file-merger-recombine-export-parts.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "file-organizer-folder-architecture",
-      "source": "src/blog/articles/file-organizer-folder-architecture.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "file-renamer-consistent-naming-system",
-      "source": "src/blog/articles/file-renamer-consistent-naming-system.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "file-splitter-large-upload-workflow",
-      "source": "src/blog/articles/file-splitter-large-upload-workflow.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "first-time-home-buyer",
@@ -444,17 +300,8 @@ export default {
       "sentences": 148,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
-    },
-    {
-      "slug": "five-minute-pdf-cleanup-workflow",
-      "source": "src/blog/articles/five-minute-pdf-cleanup-workflow.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "halal-mortgage-usa",
@@ -462,8 +309,8 @@ export default {
       "sentences": 92,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "health-insurance-marketplace",
@@ -471,8 +318,8 @@ export default {
       "sentences": 80,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "high-yield-savings-guide",
@@ -480,17 +327,17 @@ export default {
       "sentences": 69,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "html-entity-encoder-publishing-guide",
       "source": "src/blog/articles/html-entity-encoder-publishing-guide.html",
       "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
+      "sharedSentences": 32,
+      "sharedRatio": 0.3478,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "35% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "html-to-markdown-content-migration",
@@ -499,34 +346,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "image-alt-text-and-file-names-workflow",
-      "source": "src/blog/articles/image-alt-text-and-file-names-workflow.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "image-compressor-vs-image-resizer",
-      "source": "src/blog/articles/image-compressor-vs-image-resizer.html",
-      "sentences": 110,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7818,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "78% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "image-metadata-before-sharing-guide",
-      "source": "src/blog/articles/image-metadata-before-sharing-guide.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "index-funds-vs-etfs",
@@ -534,8 +354,8 @@ export default {
       "sentences": 105,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "islamic-finance-investing",
@@ -543,17 +363,8 @@ export default {
       "sentences": 118,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
-    },
-    {
-      "slug": "jpg-vs-webp-for-small-websites",
-      "source": "src/blog/articles/jpg-vs-webp-for-small-websites.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "js-minifier-practical-release-checks",
@@ -562,7 +373,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "json-formatter-debugging-api-responses",
@@ -571,7 +382,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "json-formatter-vs-json-validator",
@@ -580,16 +391,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7818,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "78% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "json-to-csv-export-workflow",
-      "source": "src/blog/articles/json-to-csv-export-workflow.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "78% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "lazy-loading-images-implementation-guide-2026",
@@ -606,8 +408,8 @@ export default {
       "sentences": 89,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "life-insurance-estimate-context",
@@ -616,7 +418,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "local-processing-vs-upload-tools-comparison",
@@ -625,16 +427,16 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "lorem-ipsum-with-real-layout-checks",
       "source": "src/blog/articles/lorem-ipsum-with-real-layout-checks.html",
       "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
+      "sharedSentences": 32,
+      "sharedRatio": 0.3478,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "35% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "markdown-to-html-publishing-workflow",
@@ -643,7 +445,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "markdown-to-html-vs-html-to-markdown",
@@ -652,25 +454,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7818,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "78% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "merge-pdf-files-client-documents-checklist",
-      "source": "src/blog/articles/merge-pdf-files-client-documents-checklist.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "metadata-cleanup-before-publishing",
-      "source": "src/blog/articles/metadata-cleanup-before-publishing.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "78% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "monthly-finance-document-routine",
@@ -679,7 +463,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "mortgage-calculator-vs-refinance-calculator",
@@ -688,7 +472,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7748,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "77% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "77% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "mortgage-refinance-break-even-guide",
@@ -697,7 +481,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "mortgage-refinancing-guide",
@@ -705,8 +489,8 @@ export default {
       "sentences": 108,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "nft-tax-guide",
@@ -714,8 +498,8 @@ export default {
       "sentences": 89,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "number-base-converter-learning-guide",
@@ -724,97 +508,16 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "ocr-scanned-pdf-troubleshooting-guide",
-      "source": "src/blog/articles/ocr-scanned-pdf-troubleshooting-guide.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "optimize-images-for-email-newsletters",
-      "source": "src/blog/articles/optimize-images-for-email-newsletters.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "palindrome-checker-teaching-string-logic",
       "source": "src/blog/articles/palindrome-checker-teaching-string-logic.html",
       "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
+      "sharedSentences": 32,
+      "sharedRatio": 0.3478,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "pdf-financial-records",
-      "source": "src/blog/articles/pdf-financial-records.html",
-      "sentences": 69,
-      "sharedSentences": 0,
-      "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
-    },
-    {
-      "slug": "pdf-merge-vs-pdf-split",
-      "source": "src/blog/articles/pdf-merge-vs-pdf-split.html",
-      "sentences": 110,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7818,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "78% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "pdf-page-numbers-for-long-reports",
-      "source": "src/blog/articles/pdf-page-numbers-for-long-reports.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "pdf-to-jpg-vs-pdf-to-png",
-      "source": "src/blog/articles/pdf-to-jpg-vs-pdf-to-png.html",
-      "sentences": 93,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6344,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "63% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "pdf-to-text-clean-extraction-workflow",
-      "source": "src/blog/articles/pdf-to-text-clean-extraction-workflow.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "pdf-to-word-when-to-convert-and-when-not-to",
-      "source": "src/blog/articles/pdf-to-word-when-to-convert-and-when-not-to.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "pdf-watermark-before-client-review",
-      "source": "src/blog/articles/pdf-watermark-before-client-review.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "35% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "percentage-calculator-business-copy",
@@ -823,7 +526,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "personal-loan-vs-credit-card",
@@ -831,8 +534,8 @@ export default {
       "sentences": 77,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "pmi-removal-guide",
@@ -840,17 +543,8 @@ export default {
       "sentences": 80,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
-    },
-    {
-      "slug": "prepare-pdf-records-for-tax-season",
-      "source": "src/blog/articles/prepare-pdf-records-for-tax-season.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "private-document-workflow-without-signup",
@@ -859,7 +553,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "public-link-review-workflow",
@@ -868,16 +562,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "reduce-screenshot-size-for-support-tickets",
-      "source": "src/blog/articles/reduce-screenshot-size-for-support-tickets.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "regex-tester-safe-review-workflow",
@@ -886,7 +571,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "remote-team-meeting-and-file-workflow",
@@ -895,16 +580,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "resize-images-for-social-platforms",
-      "source": "src/blog/articles/resize-images-for-social-platforms.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "retirement-calculator-inputs-that-matter",
@@ -913,7 +589,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "retirement-planning-millennials",
@@ -921,8 +597,8 @@ export default {
       "sentences": 93,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "roman-numerals-conversion-checklist",
@@ -931,7 +607,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "rule-of-72-estimate-investment-doubling-time",
@@ -949,7 +625,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "scientific-calculator-browser-workflow",
@@ -958,7 +634,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "sensitive-spreadsheet-cleanup-before-conversion",
@@ -967,43 +643,16 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "share-files-with-less-metadata-risk",
-      "source": "src/blog/articles/share-files-with-less-metadata-risk.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "slug-generator-url-cleanup-guide",
       "source": "src/blog/articles/slug-generator-url-cleanup-guide.html",
       "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
+      "sharedSentences": 32,
+      "sharedRatio": 0.3478,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "small-business-file-prep-stack",
-      "source": "src/blog/articles/small-business-file-prep-stack.html",
-      "sentences": 108,
-      "sharedSentences": 86,
-      "sharedRatio": 0.7963,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "split-pdf-pages-before-sharing-sensitive-sections",
-      "source": "src/blog/articles/split-pdf-pages-before-sharing-sensitive-sections.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "35% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "sql-formatter-query-review-guide",
@@ -1012,7 +661,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "student-loan-payment-estimate-workflow",
@@ -1021,7 +670,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "student-loan-repayment",
@@ -1029,8 +678,8 @@ export default {
       "sentences": 92,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "support-ticket-evidence-prep",
@@ -1039,7 +688,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "tax-deductions-homeowners",
@@ -1047,8 +696,8 @@ export default {
       "sentences": 57,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "tax-estimator-organize-documents-first",
@@ -1057,7 +706,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "term-vs-whole-life",
@@ -1065,17 +714,17 @@ export default {
       "sentences": 120,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     },
     {
       "slug": "text-diff-for-reviewing-edits",
       "source": "src/blog/articles/text-diff-for-reviewing-edits.html",
       "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
+      "sharedSentences": 32,
+      "sharedRatio": 0.3478,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "35% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "timezone-converter-meeting-workflow",
@@ -1084,7 +733,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "tool-selection-map-for-new-users",
@@ -1093,16 +742,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
-    },
-    {
-      "slug": "transparent-background-image-workflow",
-      "source": "src/blog/articles/transparent-background-image-workflow.html",
-      "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
-      "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "understanding-json-web-tokens-structure-security",
@@ -1120,7 +760,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "unit-converter-vs-scientific-calculator",
@@ -1129,7 +769,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7818,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "78% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "78% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "unix-timestamp-human-date-debugging",
@@ -1138,7 +778,7 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "url-encoder-query-string-guide",
@@ -1147,16 +787,16 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7963,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "80% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "80% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "word-counter-for-editing-client-copy",
       "source": "src/blog/articles/word-counter-for-editing-client-copy.html",
       "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
+      "sharedSentences": 32,
+      "sharedRatio": 0.3478,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "35% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "word-counter-vs-character-counter",
@@ -1165,16 +805,16 @@ export default {
       "sharedSentences": 86,
       "sharedRatio": 0.7818,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "78% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "78% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "writing-tool-stack-for-small-teams",
       "source": "src/blog/articles/writing-tool-stack-for-small-teams.html",
       "sentences": 92,
-      "sharedSentences": 59,
-      "sharedRatio": 0.6413,
+      "sharedSentences": 32,
+      "sharedRatio": 0.3478,
       "status": "UNPUBLISHED_TEMPLATE_DUPLICATION",
-      "reason": "64% of this article's sentences appear verbatim in at least 26 other articles."
+      "reason": "35% of this article's sentences appear verbatim in at least 18 other articles."
     },
     {
       "slug": "zakat-investments-guide",
@@ -1182,8 +822,8 @@ export default {
       "sentences": 88,
       "sharedSentences": 0,
       "sharedRatio": 0,
-      "status": "PUBLISHED",
-      "reason": null
+      "status": "UNPUBLISHED_OUT_OF_SCOPE",
+      "reason": "Outside the editorial scope (personal-finance, insurance, tax or vendor-pricing guidance that the site has no expertise or tool to support)."
     }
   ]
 };

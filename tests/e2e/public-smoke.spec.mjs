@@ -3,9 +3,7 @@ import { test, expect } from '@playwright/test';
 const routes = [
   ['home', '/'],
   ['pricing', '/pricing/'],
-  ['pdf', '/tools/pdf/compress/'],
-  ['image', '/tools/image/compress/'],
-  ['background remover', '/tools/image/background-remover/'],
+  ['pre/post results', '/tools/education/pre-post-results/'],
   ['developer', '/tools/dev/json-formatter/'],
   ['finance', '/tools/finance/compound-interest/']
 ];
@@ -52,15 +50,15 @@ test('homepage search never exposes source-only tool routes', async ({ page }) =
 
   await page.waitForFunction(() => document.getElementById('homeSearchForm')?.dataset.searchReady === 'true');
   const input = page.locator('#homeSearchInput');
-  await input.fill('image compressor');
+  await input.fill('pre post');
 
-  const result = page.locator('#homeSearchResults a').filter({ hasText: /Image Compressor|Görsel Sıkıştır/i }).first();
+  const result = page.locator('#homeSearchResults a').filter({ hasText: /Pre\/Post Results/i }).first();
   await expect(result).toBeVisible();
-  await expect(result).toHaveAttribute('href', '/tools/image/compress/');
+  await expect(result).toHaveAttribute('href', '/tools/education/pre-post-results/');
   expect(await result.getAttribute('href')).not.toContain('/src/tools/');
 
   const navigation = await Promise.all([
-    page.waitForURL(/\/tools\/image\/compress\/?$/),
+    page.waitForURL(/\/tools\/education\/pre-post-results\/?$/),
     result.click()
   ]);
   void navigation;
@@ -70,10 +68,8 @@ test('homepage search never exposes source-only tool routes', async ({ page }) =
 
 for (const [name, route] of [
   ['home', '/'],
-  ['background remover', '/tools/image/background-remover/'],
-  ['image compressor', '/tools/image/compress/'],
   ['json formatter', '/tools/dev/json-formatter/'],
-  ['pdf compressor', '/tools/pdf/compress/']
+  ['pre/post results', '/tools/education/pre-post-results/']
 ]) {
   test(`${name} remains readable and visual in light mode`, async ({ page }) => {
     await page.addInitScript(() => {
@@ -119,12 +115,11 @@ for (const [name, route] of [
   });
 }
 
-test('uncertified background remover fails closed without active controls', async ({ page }) => {
-  const response = await page.goto('/tools/image/background-remover/', { waitUntil: 'domcontentloaded' });
+test('an uncertified tool fails closed', async ({ page }) => {
+  const response = await page.goto('/tools/text/text-summarizer/', { waitUntil: 'domcontentloaded' });
   expect(response?.ok()).toBeTruthy();
   await expect(page.getByRole('heading', { name: 'This tool is currently unavailable' })).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex,nofollow');
-  await expect(page.locator('#removeBtn, #fileInput, canvas')).toHaveCount(0);
 });
 
 test('homepage exposes a keyboard-focusable primary control', async ({ page }) => {

@@ -1,14 +1,4 @@
 const CATEGORY_CONFIG = {
-  pdf: {
-    label: 'PDF tools', route: '/categories/pdf-tools.html', guide: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
-    tools: [['Compress PDF', '/tools/pdf/compress/'], ['Merge PDF', '/tools/pdf/merge/'], ['Split PDF', '/tools/pdf/split/'], ['Redact PDF', '/tools/pdf/redact/']],
-    helper: 'Review page order, readability, file size and sensitive pages before sharing a document.'
-  },
-  image: {
-    label: 'Image tools', route: '/categories/image-tools.html', guide: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
-    tools: [['Compress image', '/tools/image/compress/'], ['Resize image', '/tools/image/image-resizer/'], ['Remove metadata', '/tools/image/metadata-remover/']],
-    helper: 'Check dimensions, format, visual quality and metadata before publishing or sending an image.'
-  },
   finance: {
     label: 'Finance tools', route: '/categories/finance-tools.html', guide: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
     tools: [['Live exchange', '/tools/finance/live-exchange/'], ['Compound interest', '/tools/finance/compound-interest/'], ['Cloud cost', '/tools/finance/cloud-cost/']],
@@ -31,7 +21,7 @@ const CATEGORY_CONFIG = {
   },
   data: {
     label: 'Data tools', route: '/categories/data-tools.html', guide: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
-    tools: [['CSV to JSON', '/tools/data/csv-to-json/'], ['JSON to CSV', '/tools/data/json-to-csv/'], ['SQL formatter', '/tools/data/sql-formatter/']],
+    tools: [['SQL formatter', '/tools/data/sql-formatter/'], ['vCard generator', '/tools/data/vcf-generator/'], ['Chart builder', '/tools/data/chart-builder/']],
     helper: 'Validate structure, headers and sample rows before importing or handing off data.'
   },
   design: {
@@ -51,7 +41,7 @@ const CATEGORY_CONFIG = {
   },
   social: {
     label: 'Social media tools', route: '/categories/social-media-tools.html', guide: '/blog/articles/browser-based-tools-vs-desktop-software-privacy-comparison.html',
-    tools: [['UTM builder', '/tools/social/utm-builder/'], ['Hashtag generator', '/tools/social/hashtag-generator/'], ['YouTube thumbnail', '/tools/social/youtube-thumbnail/']],
+    tools: [['UTM builder', '/tools/social/utm-builder/'], ['Hashtag generator', '/tools/social/hashtag-generator/']],
     helper: 'Check campaign naming, visual size and platform context before publishing social assets.'
   }
 };

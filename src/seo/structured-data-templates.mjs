@@ -3,7 +3,7 @@ const ORGANIZATION_ID = `${ORIGIN}/#organization`;
 const WEBSITE_ID = `${ORIGIN}/#website`;
 const PRIMARY_AUTHOR_ID = `${ORIGIN}/author/metehan-cetin.html#person`;
 const PRIMARY_AUTHOR_URL = `${ORIGIN}/author/metehan-cetin.html`;
-const PRIMARY_AUTHOR_NAME = 'Metehan Çetin, LPC';
+const PRIMARY_AUTHOR_NAME = 'Metehan Çetin';
 
 const TOOL_CATEGORY_MAP = {
   converters: 'UtilityApplication',

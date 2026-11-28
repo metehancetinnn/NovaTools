@@ -3,7 +3,7 @@
 **Date:** 2026-08-10
 **Pre-change baseline commit:** `2996bb108388e778b564c46e8bedc7f64f6d261b`
 **Production domain:** `https://mc-novatools.com/`
-**Repository:** `psycholog1sts/NovaTools` (private)
+**Repository:** `metehancetinnn/NovaTools` (private)
 
 ## Scope
 

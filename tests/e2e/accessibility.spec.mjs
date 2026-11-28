@@ -4,7 +4,7 @@ import AxeBuilder from '@axe-core/playwright';
 const routes = [
   ['home', '/'],
   ['pricing', '/pricing/'],
-  ['pdf compressor', '/tools/pdf/compress/']
+  ['pre/post results', '/tools/education/pre-post-results/']
 ];
 
 for (const [name, route] of routes) {
@@ -108,10 +108,8 @@ for (const [name, route] of routes) {
 
 for (const [name, route] of [
   ['home', '/'],
-  ['background remover', '/tools/image/background-remover/'],
-  ['image compressor', '/tools/image/compress/'],
   ['json formatter', '/tools/dev/json-formatter/'],
-  ['pdf compressor', '/tools/pdf/compress/']
+  ['pre/post results', '/tools/education/pre-post-results/']
 ]) {
   test(`${name} light theme has no WCAG color contrast failures`, async ({ page }) => {
     await page.addInitScript(() => {
@@ -151,9 +149,9 @@ test('homepage mobile discovery links resolve and search keeps focus inside the 
 });
 
 test('homepage SearchAction query opens the real tool search', async ({ page }) => {
-  await page.goto('/?q=PDF%20Compressor', { waitUntil: 'domcontentloaded' });
+  await page.goto('/?q=Pre%2FPost%20Results', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#searchModal')).toBeVisible();
-  await expect(page.locator('#globalSearch')).toHaveValue('PDF Compressor');
+  await expect(page.locator('#globalSearch')).toHaveValue('Pre/Post Results');
   await expect(page.locator('#searchResults a')).not.toHaveCount(0);
 });
 
@@ -170,45 +168,36 @@ test('homepage mobile discovery stays concise without hiding category routes', a
     const href = await categoryLinks.nth(i).getAttribute('href');
     const response = await page.request.get(href);
     expect(response.status(), `${href} must exist`).toBe(200);
-    expect(await response.text(), `${href} must list at least one tool`).toMatch(/guide-tool-card/);
+    // A category with a single tool links straight to it (src/data/categories.js 'href');
+    // that target must then be a tool page, not an empty hub.
+    const body = await response.text();
+    if (href.startsWith('/tools/')) expect(body, `${href} must be a tool page`).toMatch(/data-tool-id="/);
+    else expect(body, `${href} must list at least one tool`).toMatch(/guide-tool-card/);
   }
   await expect(page.locator('#categoriesPending')).toBeVisible();
 
-  // Budget bumped when the "Developer Tools" category card started appearing here
-  // (its first certified tool shipped), which legitimately added ~400px. Keep some
-  // margin above the current real height so this still catches actual bloat.
-  // Bumped again when PDF Redact became the fourth certified PDF tool listed on the
-  // homepage (+61px, measured 12161 in CI).
-  // Bumped again when the certified Retirement and Student Loan calculators got manifest entries
-  // and started appearing in homepage discovery (two ~260px mobile cards; 12653 measured locally).
+  // The homepage must not grow with the catalogue. It used to render a card for
+  // every certified tool (~250px each at 375px), and this budget was raised four
+  // times (12161 -> 12653 -> 12900 -> 13150) as tools were certified: the test
+  // was being moved to fit the bug. Featured tools are now a fixed shortlist, so
+  // the card count is asserted directly and the height budget is back to a fixed
+  // number with ~10% headroom over the measured 8.4k (8934 with "Recently used"
+  // visible, which it is not in a fresh test browser). Raise it only for a
+  // deliberate new section, never for one more tool.
+  const featuredCards = await page.locator('#featuredTools .featured-tool-card').count();
+  expect(featuredCards).toBeGreaterThan(0);
+  expect(featuredCards).toBeLessThanOrEqual(6);
   const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
-  expect(documentHeight).toBeLessThan(12900);
+  expect(documentHeight).toBeLessThan(9400);
 });
 
-test('gold-standard PDF page exposes usable mobile navigation', async ({ page }) => {
-  await page.setViewportSize({ width: 375, height: 812 });
-  await page.goto('/tools/pdf/compress/', { waitUntil: 'domcontentloaded' });
-  const trigger = page.locator('.mobile-menu-toggle');
-  await expect(trigger).toBeVisible();
-  await trigger.click();
-  await expect(trigger).toHaveAttribute('aria-expanded', 'true');
-  const pdfTarget = page.locator('#mobileMenu a').filter({ hasText: 'PDF tools' });
-  await expect(pdfTarget).toBeVisible();
-  // Production serves extensionless URLs and 308-redirects `.html`, so links name the served route.
-  const pdfPath = await pdfTarget.evaluate((link) => new URL(link.href).pathname);
-  expect(pdfPath).toBe('/categories/pdf-tools');
-  // Resolve against the build under test, not the absolute production origin the link may name.
-  const response = await page.request.get(pdfPath);
-  expect(response.status()).toBe(200);
-  expect(await response.text()).toContain('<title>PDF Tools');
-});
-
-test('image compressor navigation resolves to real category routes', async ({ page }) => {
-  await page.goto('/tools/image/compress/', { waitUntil: 'domcontentloaded' });
-  const hrefs = await page.locator('.nav-desktop a').evaluateAll((links) => links.map((link) => new URL(link.href).pathname));
-  const categoryRoutes = ['/categories/finance-tools', '/categories/pdf-tools', '/categories/image-tools', '/categories/developer-tools'];
-  for (const route of categoryRoutes) {
-    expect(hrefs).toContain(route);
-    expect((await page.request.get(route)).status()).toBe(200);
+// The PDF, image and file tools were retired on 2026-11-27 (decision D-012) and answer
+// 410 Gone in production; no public page may still link to them.
+test('public pages do not link to retired tools or hubs', async ({ page }) => {
+  for (const route of ['/', '/tools/education/pre-post-results/', '/categories/', '/categories/security-tools']) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+    const hrefs = await page.locator('a[href]').evaluateAll((links) => links.map((link) => new URL(link.href).pathname));
+    const retired = hrefs.filter((path) => /^\/(tools\/(pdf|image)\/|tools\/security\/share-safe-check|categories\/(pdf|image)-tools)/.test(path));
+    expect(retired, route).toEqual([]);
   }
 });

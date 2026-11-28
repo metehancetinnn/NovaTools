@@ -191,7 +191,7 @@ function renderCategoryPage(hub) {
   <meta name="description" content="${escapeHtml(hub.short)}">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0A0A0C">
-  <meta name="author" content="Metehan ÇETİN, LPC">
+  <meta name="author" content="Metehan ÇETİN">
   <link rel="canonical" href="${origin}${path}">
 ${hreflang(path)}
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -238,7 +238,7 @@ function renderIndexPage() {
   <meta name="description" content="Browse every MC NovaTools category as a professional decision hub for PDF, image, finance, developer, text, converter, security, data, design, social and productivity tools.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0A0A0C">
-  <meta name="author" content="Metehan ÇETİN, LPC">
+  <meta name="author" content="Metehan ÇETİN">
   <link rel="canonical" href="${origin}${path}">
 ${hreflang(path)}
   <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -1,0 +1,36 @@
+{
+  "id": "pre-post-results",
+  "name": "Pre/Post Results Builder",
+  "nameEn": "Pre/Post Results Builder",
+  "category": "education",
+  "tier": 1,
+  "cpc": {
+    "tr": 0,
+    "us": 0
+  },
+  "keywords": {
+    "tr": ["ön test son test sonuç grafiği", "rehberlik etkinliği değerlendirme", "rehber öğretmen ön test son test"],
+    "en": ["pre post survey results school counselor", "school counseling data pre post", "counseling lesson pre test post test graph", "small group pre post results"]
+  },
+  "description": {
+    "tr": "Rehberlik etkinliği veya küçük grup çalışmasının ön test ve son test cevaplarını eşleştirir; hedef bazında sonuç, grafik, tablo ve özet paragraf üretir. Cevaplar tarayıcıdan çıkmaz.",
+    "en": "Matches before and after survey answers from a school counseling lesson or small group and builds results by objective, a chart, a table and a summary paragraph. Answers never leave the browser."
+  },
+  "schema": {
+    "@type": "WebApplication",
+    "applicationCategory": "EducationalApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    }
+  },
+  "ads": {
+    "sidebar": {
+      "enabled": false
+    }
+  },
+  "bundle": {
+    "lazyLoad": false
+  },
+  "relatedTools": []
+}

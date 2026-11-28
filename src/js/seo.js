@@ -10,16 +10,16 @@ const TITLE_LIMIT = 60;
 // online tools" while 27 tools were certified and listed.
 const HOME_COPY = {
   en: {
-    title: 'Check What a File Reveals Before You Send It | NovaTools',
-    description: 'Find GPS location, names, old revisions, comments and tokens in photos, PDFs, Office files and HAR logs, then get a cleaned copy. Nothing is uploaded.'
+    title: 'Pre/Post Results for School Counselors | MC NovaTools',
+    description: 'Turn before and after survey answers from a counseling lesson into matched-student results, a chart and a summary paragraph. Free; nothing is uploaded.'
   },
   tr: {
-    title: 'Dosyanız Ne Ele Veriyor? Göndermeden Kontrol Edin',
-    description: 'Fotoğraf, PDF, Office ve HAR dosyalarındaki konum, isim, eski sürüm, yorum ve token bilgisini bulun; temiz kopyayı tarayıcınızda alın. Dosya yüklenmez.'
+    title: 'Rehberlik Etkinliği Ön Test / Son Test Sonuçları | MC NovaTools',
+    description: 'Ön test ve son test cevaplarını öğrenci koduyla eşleştirin; hedef bazında sonuç, grafik ve özet paragraf alın. Cevaplar yüklenmez; arayüz şimdilik İngilizce.'
   },
   ar: {
-    title: 'NovaTools – افحص ما يكشفه الملف قبل إرساله',
-    description: 'اكتشف الموقع والأسماء والمراجعات السابقة والرموز المخفية في الصور وملفات PDF وOffice قبل إرسالها، ونظّفها في متصفحك دون رفعها.'
+    title: 'MC NovaTools – نتائج الاستبيان القبلي والبعدي للمرشدين',
+    description: 'حوّل إجابات الاستبيان قبل الدرس وبعده إلى نتائج حسب الهدف مع رسم بياني وملخص، في متصفحك ودون رفع البيانات.'
   }
 };
 

@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { isRetiredPath } from '../src/server/http/retired-routes.mjs';
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputFiles = [
@@ -394,10 +395,17 @@ function buildFaq(task, toolNames, category) {
 
 function buildDataset() {
   const articles = [];
-  Object.entries(clusters).forEach(([clusterKey, clusterConfig]) => {
-    clusterConfig.topics.forEach((topic) => {
-      articles.push(buildArticle(topic, clusterKey, clusterConfig, articles.length));
-    });
+  // Tools retired on 2026-11-27 (src/server/http/retired-routes.mjs) drop out of the
+  // plan: a topic whose main tool is gone, or that keeps fewer than two tools, is skipped.
+  Object.entries(clusters).forEach(([clusterKey, rawConfig]) => {
+    const clusterConfig = { ...rawConfig, tools: rawConfig.tools.filter((tool) => !isRetiredPath(tool)) };
+    clusterConfig.topics
+      .filter((topic) => !isRetiredPath(topic[3][0]))
+      .map((topic) => [topic[0], topic[1], topic[2], topic[3].filter((tool) => !isRetiredPath(tool)), ...topic.slice(4)])
+      .filter((topic) => topic[3].length >= 2)
+      .forEach((topic) => {
+        articles.push(buildArticle(topic, clusterKey, clusterConfig, articles.length));
+      });
   });
 
   const byCluster = articles.reduce((acc, article) => {
@@ -433,10 +441,13 @@ function validateDataset(dataset) {
   const titles = new Set();
   const articleSlugs = new Set(dataset.articles.map((article) => article.slug));
 
-  if (dataset.articles.length !== 100) failures.push(`Expected 100 outlines, found ${dataset.articles.length}.`);
+  // The plan used to require exactly 100 outlines (12-13 per cluster). The PDF and image
+  // clusters were retired on 2026-11-27 (decision D-012); a volume quota would only push
+  // filler topics back in, so only the upper bounds remain.
+  if (dataset.articles.length > 100) failures.push(`Expected at most 100 outlines, found ${dataset.articles.length}.`);
 
   for (const [cluster, count] of Object.entries(dataset.clusterDistribution)) {
-    if (count < 12 || count > 13) failures.push(`Cluster ${cluster} must contain 12 or 13 outlines, found ${count}.`);
+    if (count > 13) failures.push(`Cluster ${cluster} must contain at most 13 outlines, found ${count}.`);
   }
 
   dataset.articles.forEach((article, index) => {

@@ -279,8 +279,8 @@ function expectedAssets(articles) {
 
 const dataset = JSON.parse(await readFile(outlinePath, 'utf8'));
 const outlineArticles = dataset.articles || [];
-if (outlineArticles.length !== 100) {
-  throw new Error(`Expected 100 blog outlines before image generation, found ${outlineArticles.length}.`);
+if (outlineArticles.length === 0 || outlineArticles.length > 100) {
+  throw new Error(`Expected 1-100 blog outlines before image generation, found ${outlineArticles.length}.`);
 }
 const fallbackPosts = JSON.parse(await readFile(fallbackBlogPath, 'utf8'));
 const articles = uniqueArticles(outlineArticles, fallbackPosts);

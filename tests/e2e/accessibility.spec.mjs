@@ -4,7 +4,7 @@ import AxeBuilder from '@axe-core/playwright';
 const routes = [
   ['home', '/'],
   ['pricing', '/pricing/'],
-  ['pdf compressor', '/tools/pdf/compress/']
+  ['pre/post results', '/tools/education/pre-post-results/']
 ];
 
 for (const [name, route] of routes) {
@@ -108,10 +108,8 @@ for (const [name, route] of routes) {
 
 for (const [name, route] of [
   ['home', '/'],
-  ['background remover', '/tools/image/background-remover/'],
-  ['image compressor', '/tools/image/compress/'],
   ['json formatter', '/tools/dev/json-formatter/'],
-  ['pdf compressor', '/tools/pdf/compress/']
+  ['pre/post results', '/tools/education/pre-post-results/']
 ]) {
   test(`${name} light theme has no WCAG color contrast failures`, async ({ page }) => {
     await page.addInitScript(() => {
@@ -189,30 +187,13 @@ test('homepage mobile discovery stays concise without hiding category routes', a
   expect(documentHeight).toBeLessThan(9400);
 });
 
-test('gold-standard PDF page exposes usable mobile navigation', async ({ page }) => {
-  await page.setViewportSize({ width: 375, height: 812 });
-  await page.goto('/tools/pdf/compress/', { waitUntil: 'domcontentloaded' });
-  const trigger = page.locator('.mobile-menu-toggle');
-  await expect(trigger).toBeVisible();
-  await trigger.click();
-  await expect(trigger).toHaveAttribute('aria-expanded', 'true');
-  const pdfTarget = page.locator('#mobileMenu a').filter({ hasText: 'PDF tools' });
-  await expect(pdfTarget).toBeVisible();
-  // Production serves extensionless URLs and 308-redirects `.html`, so links name the served route.
-  const pdfPath = await pdfTarget.evaluate((link) => new URL(link.href).pathname);
-  expect(pdfPath).toBe('/categories/pdf-tools');
-  // Resolve against the build under test, not the absolute production origin the link may name.
-  const response = await page.request.get(pdfPath);
-  expect(response.status()).toBe(200);
-  expect(await response.text()).toContain('<title>PDF Tools');
-});
-
-test('image compressor navigation resolves to real category routes', async ({ page }) => {
-  await page.goto('/tools/image/compress/', { waitUntil: 'domcontentloaded' });
-  const hrefs = await page.locator('.nav-desktop a').evaluateAll((links) => links.map((link) => new URL(link.href).pathname));
-  const categoryRoutes = ['/categories/finance-tools', '/categories/pdf-tools', '/categories/image-tools', '/categories/developer-tools'];
-  for (const route of categoryRoutes) {
-    expect(hrefs).toContain(route);
-    expect((await page.request.get(route)).status()).toBe(200);
+// The PDF, image and file tools were retired on 2026-11-27 (decision D-012) and answer
+// 410 Gone in production; no public page may still link to them.
+test('public pages do not link to retired tools or hubs', async ({ page }) => {
+  for (const route of ['/', '/tools/education/pre-post-results/', '/categories/', '/categories/security-tools']) {
+    await page.goto(route, { waitUntil: 'domcontentloaded' });
+    const hrefs = await page.locator('a[href]').evaluateAll((links) => links.map((link) => new URL(link.href).pathname));
+    const retired = hrefs.filter((path) => /^\/(tools\/(pdf|image)\/|tools\/security\/share-safe-check|categories\/(pdf|image)-tools)/.test(path));
+    expect(retired, route).toEqual([]);
   }
 });

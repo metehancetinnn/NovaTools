@@ -1,5 +1,44 @@
 # Growth experiments
 
+## Reset 2026-11-28: experiments for the Pre/Post Results Builder
+
+The Share-Safe experiments below (G-30-1 .. G-90-1) are **cancelled**: the product
+was retired (D-012). No traffic, Search Console or revenue data was available; the
+numbers below are decision thresholds, not forecasts.
+
+**Measurement:** consent-gated, count-only events on the tool: `tool_success{mode=analyze}`
+(an analysis was built) and `result_download{output_format=png|svg|csv}`. No answers,
+codes, questions or titles are recorded. Counts are lower bounds (consenting visitors only).
+
+### G-R0 Problem interviews before more building (week 0)
+- **Action:** 10 short conversations or DMs with US school counselors (communities that
+  allow it): "How did you make your last pre/post graph, and how long did it take?"
+  Ask about Pathful or other tools they already use.
+- **Stop:** fewer than 4 of 10 call it a recurring chore → stop investing in H08.
+
+### G-R1 Community launch (weeks 1–8)
+- **Action:** one honest post per community where self-promotion rules allow; offer the
+  tool free with the guide section on writing pre/post items. No paid ads, no vote
+  manipulation, no automated comments.
+- **Measure:** completed analyses per week; share of users with a second analysis within
+  30 days; unprompted mentions or shares.
+- **Stop (week 8):** under 100 completed analyses, or under 15% second-analysis rate,
+  or zero unprompted mentions → stop H08.
+
+### G-R2 Turkish mock-up test in parallel (near-zero cost)
+- **Action:** share a one-page Turkish mock-up of the ön-test/son-test version (H09/H10)
+  in 2–3 rehber öğretmen groups; count genuine requests. Do not use school data.
+- **Decision:** clearly stronger pull than G-R1 (for example more than 30 genuine requests)
+  → build the Turkish version next.
+
+### G-R3 Paid test (only after D-014's legal questions are answered)
+- **Action:** a $15 "results report kit" waitlist or pre-order.
+- **Stop:** fewer than 10 pre-orders or 50 waitlist sign-ups from at least 300 tool users.
+
+---
+
+## Archived (cancelled 2026-11-28): Share-Safe experiments
+
 Date: 2026-11-27. No traffic, Search Console or revenue data was available to
 this work; nothing below assumes any. Numbers marked "target" are decision
 thresholds, not forecasts.

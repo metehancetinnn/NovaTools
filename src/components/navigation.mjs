@@ -4,8 +4,6 @@ import { categoryLabel, toolHref, toolName } from './engagement-widgets.mjs';
 import { publicCertifiedTools } from '../data/public-tools.mjs';
 
 const CATEGORY_ROUTES = {
-  pdf: '/categories/pdf-tools.html',
-  image: '/categories/image-tools.html',
   finance: '/categories/finance-tools.html',
   dev: '/categories/developer-tools.html',
   text: '/categories/text-writing.html',

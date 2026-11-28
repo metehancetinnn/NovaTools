@@ -89,3 +89,65 @@ Evidence IDs (EV-xxx, NICHE-xx, FEAT-xx, PAGE-xxx, LEGAL-xx) refer to the CSVs i
   but ~170 files still show "Licensed Professional Counselor" / "LPC". Only the
   owner can confirm whether that licence is held; removal is a one-commit job
   once confirmed. Owner action listed in progress.md.
+
+---
+# Product reset (2026-11-27/28)
+
+The owner rejected the file-utility direction (D-001..D-004, D-008 depend on it)
+and clarified the credential. D-011..D-015 supersede them where they conflict.
+
+## D-011 — Remove the LPC credential; state the real title (commit fe6dfa10)
+- **Owner statement:** Psychological Counselor and Guidance Teacher in Türkiye; no US
+  LPC licence. Supersedes D-010.
+- **Done:** "LPC" / "Licensed Professional Counselor" removed from 169 source files
+  (meta author, JSON-LD, footers, locales, `src/core/config.mjs`). The author and
+  about pages state the Turkish title, say it is not a foreign licence, and say the
+  site offers no counselling or therapy. `tests/public-claim-policy.mjs` fails if
+  the title returns.
+
+## D-012 — Retire the PDF, image and generic file tools and Share-Safe (410, not 301)
+- **Owner decision:** no PDF/file converters, compressors, mergers or editors, no
+  generic file-safety checker.
+- **Handling per URL:** no equivalent replacement exists on the site, so the routes
+  answer **410 Gone** (Pages Function `functions/{tools,categories,blog/articles}/[[path]].js`,
+  list in `src/server/http/retired-routes.mjs`, test `tests/retired-routes.mjs`).
+  Nothing is redirected to the homepage. Withheld articles (already 404) stay 404.
+- **Scope:** `/tools/pdf/*`, `/tools/image/*`, 11 file tools in `/tools/data/`,
+  6 file/download tools in `/tools/social/`, `/tools/design/mockup-generator/`,
+  `/tools/security/share-safe-check/`, the two demo routes, the PDF and Image hubs,
+  two published articles about PDF tools, and 39 file-topic articles (unpublished).
+- **Recoverability:** git tag `archive/file-tools-2026-11-27` (commit fe6dfa10) and
+  an offline bundle `D:\Archives\MC-NovaTools\file-tools-2026-11-27.bundle`.
+- **Kept shared code:** pdf-lib stays (Invoice Generator uses it). pdfjs-dist is now
+  unused by public pages; left in package.json until a separate dependency clean-up.
+
+## D-013 — New lead product: Pre/Post Results Builder for school counselors
+- **Evidence:** `docs/research/reset-2026-11-27/` (25 hypotheses scored; H08 72/100,
+  H09 71, RLSProof 66). Demand evidence is **structural, not observed**: ASCA's
+  results-report templates and RAMP rubric ask counselors for pre/post data; no
+  direct counselor complaints were captured (Reddit not fetchable); search volumes unknown.
+- **Why it, despite weak evidence:** fits the owner's real expertise, costs little
+  to test (static, browser-only, no data stored), has a recurring trigger (every
+  lesson unit or group), and no dedicated free tool was found. Treat it as a
+  validation bet with stop conditions (growth-experiments.md), not a proven market.
+- **Rejected:** RLSProof v2 as lead (strong free alternatives incl. Supabase's own
+  advisors); Turkish rehber öğretmen paperwork kit (H09) deferred to a parallel
+  low-cost test; sport-psychology and wellbeing apps (regulatory/claims risk,
+  Paddle's medical-advice ban, weak differentiation).
+- **Guardrails:** descriptive statistics only; no causal, clinical or diagnostic
+  claims; no ASCA endorsement implied; answers never leave the tab (enforced by test).
+
+## D-014 — No monetisation and no new paid infrastructure for now
+- Supersedes D-009's scope. turkiye-business-feasibility.md: if the owner is a public
+  employee, Law 657 art. 28 may bar commercial activity; a Sept 2026 Presidency opinion
+  says app and content income should be assessed under it. Paddle is the only checked
+  merchant of record that may accept a Türkiye-based seller. Nothing is sold, and
+  ads are not added to the new tool (`AdsEligible: false`), until a lawyer and a mali
+  müşavir have answered the questions in that file.
+
+## D-015 — Keep the valid cycle-1/2 site-quality work
+- Kept: homepage fixed card budget (≤6) and 9,400px height test; guides retirement
+  and /ar noindex; duplicate redirects; honest blog cards; consent-gated events.
+- Also fixed now (pre-existing defects found while verifying): the build replaced
+  every tool page's meta description with generated text ending "route qgq."; the
+  tool-page enhancer overwrote buttons' visible names with their ids (WCAG 2.5.3).

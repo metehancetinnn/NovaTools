@@ -76,8 +76,6 @@ const blogCategoryPages = [];
 
 const categoryPages = [
   ['/categories/index.html', '0.8', 'weekly'],
-  ['/categories/pdf-tools.html', '0.8', 'weekly', 'pdf'],
-  ['/categories/image-tools.html', '0.8', 'weekly', 'image'],
   ['/categories/finance-tools.html', '0.8', 'weekly', 'finance'],
   ['/categories/developer-tools.html', '0.8', 'weekly', 'dev'],
   ['/categories/text-writing.html', '0.8', 'weekly', 'text'],
@@ -88,7 +86,7 @@ const categoryPages = [
   ['/categories/productivity-tools.html', '0.8', 'weekly', 'productivity'],
   ['/categories/data-tools.html', '0.8', 'weekly', 'data'],
   ['/categories/design-tools.html', '0.8', 'weekly', 'design']
-  // /tools/{pdf,image,developer,finance}/ are copies of the hubs above that name the hub as
+  // /tools/{developer,finance}/ are copies of the hubs above that name the hub as
   // canonical (scripts/post-build-fix.mjs), so they are not listed separately.
 ];
 

@@ -4,8 +4,6 @@
  */
 
 const PROTOCOLS = {
-  PDF_MERGE: 'web+pdfmerge',
-  PDF_COMPRESS: 'web+pdfcompress',
   MORTGAGE_CALC: 'web+mortgage',
   COMPOUND_INTEREST: 'web+compound'
 };
@@ -20,19 +18,6 @@ export function registerProtocolHandlers() {
   }
 
   try {
-    // Register PDF merge handler
-    navigator.registerProtocolHandler(
-      PROTOCOLS.PDF_MERGE,
-      '/src/tools/pdf/merge/?source=%s',
-      'NovaTools PDF Merge'
-    );
-
-    // Register PDF compress handler
-    navigator.registerProtocolHandler(
-      PROTOCOLS.PDF_COMPRESS,
-      '/src/tools/pdf/compress/?source=%s',
-      'NovaTools PDF Compress'
-    );
 
     // Register mortgage calculator handler
     navigator.registerProtocolHandler(
@@ -77,8 +62,6 @@ export function generateProtocolUrl(tool, params = {}) {
   let protocol;
   
   switch (tool) {
-    case 'pdf-merge': protocol = PROTOCOLS.PDF_MERGE; break;
-    case 'pdf-compress': protocol = PROTOCOLS.PDF_COMPRESS; break;
     case 'mortgage': protocol = PROTOCOLS.MORTGAGE_CALC; break;
     case 'compound-interest': protocol = PROTOCOLS.COMPOUND_INTEREST; break;
     default: return null;

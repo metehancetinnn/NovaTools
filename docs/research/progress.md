@@ -1,9 +1,70 @@
 # Progress record
 
 Mission: `docs/NOVATOOLS_AUTONOMOUS_MISSION.md`. Decisions: `decision-log.md`.
-Branch `feat/share-safe-pivot`, PR metehancetinnn/NovaTools#289 (open, not merged,
-not deployed). On resume: read this file, then `git log --oneline main..HEAD`,
+Branch `feat/share-safe-pivot` (name predates the reset), PR metehancetinnn/NovaTools#289
+(open, not merged, not deployed). On resume: read this file, then `git log --oneline main..HEAD`,
 then verify the last checkpoint's tests before continuing.
+
+## Reset cycle — 2026-11-27/28 (owner's direction reset)
+
+Owner input: no LPC licence (title: Psychological Counselor and Guidance Teacher,
+Türkiye); reject PDF/file utilities and Share-Safe; find a differentiated product.
+
+**Done (decisions D-011..D-015):**
+1. LPC removed from 169 source files; real title on author/about pages; regression test. (fe6dfa10)
+2. Retired: all `/tools/pdf/*` and `/tools/image/*`, 18 file/download tools elsewhere,
+   Share-Safe, two demo routes, the PDF and Image hubs, 2 published + 39 unpublished
+   file-topic articles. They answer **410 Gone** via Pages Functions; no homepage
+   redirects. Links to them were removed site-wide (whole cards/list items, prose unlinked).
+   Archive: tag `archive/file-tools-2026-11-27`, bundle `D:\Archives\MC-NovaTools\file-tools-2026-11-27.bundle`.
+3. Research: 25 hypotheses scored, top 4 deep-dived, Türkiye feasibility
+   (`reset-2026-11-27/`). Recommendation H08, with weak, structural demand evidence.
+4. Built the **Pre/Post Results Builder** (`/tools/education/pre-post-results/`):
+   pure core + 60+ assertions in `tests/pre-post-results.mjs`; homepage, nav,
+   search, sitemap and certification now lead with it.
+5. Pre-existing defects fixed while verifying: tool-page meta descriptions were
+   overwritten with "... route qgq." text on every tool page; the enhancer replaced
+   buttons' visible names with their ids.
+6. Build/test gates that only enforced volume were relaxed with a written reason
+   (exactly-100 outline plan, ≥12 category pages); no quality gate was weakened.
+
+**Checks run locally (Windows, 2026-11-28):** `npm test` exit 0; `npm run lint`
+0 errors (5 pre-existing warnings); audit:public-routes, lint:site-links,
+lint:blog-outlines, lint:blog-routes, lint:rss, audit:adsense, lint:i18n,
+lint:critical-css, lint:performance-budget, audit:claim-candidates, audit:client-env,
+lint:blog-images, lint:media-dimensions, lint:blog-seed all exit 0. Build: Vite and
+every post-build step pass when run one by one; one-shot `npm run build` runs out of
+memory on this machine (R-16); `build:csp` fails locally on one hash (R-05/R-17).
+Browser (built site): tool runs end to end with the example data at 1280px and
+375px, no console errors, only same-origin requests; homepage 8,141px at 375px,
+6 cards, no links to retired pages; search finds the tool for "pre post" and "counselor".
+**Not run locally:** Playwright e2e, Lighthouse, the 410 Functions on Cloudflare (unit-tested only).
+
+### Acceptance status (reset)
+| Item | Status |
+|---|---|
+| Credential accurate | done |
+| Rejected products removed from public site | done in branch; live after merge (verify 410s, R-13) |
+| Valid earlier work preserved | done (D-015) |
+| ≥20 hypotheses, deep dives, evidence with dates | done; evidence for the winner is structural only |
+| Türkiye feasibility | done; lawyer and mali müşavir questions open |
+| New direction implemented and tested | MVP done; demand unvalidated |
+| CI verified | pending on the pushed head |
+
+### Owner actions
+1. Review PR #289 (now the reset PR). Do not merge until CI is green; after deploy,
+   curl a retired URL (expect 410) and a kept tool (expect 200).
+2. Before any revenue, ads or sales: an administrative-law lawyer on Law 657 art. 28,
+   and a mali müşavir on the tax route (questions in turkiye-business-feasibility.md).
+3. Run G-R0: ten short conversations with school counselors before more building.
+4. Grant Search Console access so search demand stops being "unknown".
+5. Set the GitHub repo homepage field to https://mc-novatools.com.
+
+### Next task
+G-R0 interviews and a check of Pathful's actual features. Technical next: R-04
+(single canonical form per page) and removing the now-unused pdfjs-dist dependency.
+
+## Earlier cycles (superseded where D-011..D-015 conflict)
 
 ## Cycle 1 — 2026-11-27 (earlier part of the session)
 - a52093c7 Share-Safe File Check; blog narrowed to editorial scope (24 out of

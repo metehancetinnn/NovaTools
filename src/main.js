@@ -47,7 +47,7 @@ function getCategoryLabel(categoryName) {
   };
 
   const rawKeys = {
-    pdf: 'PDF Tools', image: 'Image Tools', finance: 'Finance Tools', dev: 'Developer Tools',
+    education: 'School Counseling', finance: 'Finance Tools', dev: 'Developer Tools',
     text: 'Text & Writing', converters: 'Converters', security: 'Security Tools',
     productivity: 'Productivity', data: 'Data Tools', design: 'Design Tools',
     calculators: 'Calculators', social: 'Social Media'
@@ -154,9 +154,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 const popularTasks = [
-  { key: 'mergePdf', label: 'Merge PDF', slug: 'pdf/merge', icon: 'file-text' },
-  { key: 'compressPdf', label: 'Compress PDF', slug: 'pdf/compress', icon: 'file-text' },
-  { key: 'compressImage', label: 'Compress Image', slug: 'image/compress', icon: 'image' },
+  { key: 'prePostResults', label: 'Pre/Post Results', slug: 'education/pre-post-results', icon: 'trending-up' },
   { key: 'jsonFormatter', label: 'JSON Formatter', slug: 'dev/json-formatter', icon: 'code' },
   { key: 'liveExchange', label: 'Live Exchange', slug: 'finance/live-exchange', icon: 'repeat' },
   { key: 'textAnalysis', label: 'Text Analysis', slug: 'text/text-analysis', icon: 'type' },
@@ -164,74 +162,32 @@ const popularTasks = [
   { key: 'passwordGenerator', label: 'Password Generator', slug: 'security/password-generator', icon: 'shield' }
 ];
 
-// The homepage leads with one job: getting a file ready to send. This is a fixed,
-// ordered shortlist, not "every certified tool": listing the whole catalogue made
-// the page ~250px taller on mobile with every tool that passed certification.
-// The full catalogue lives in the category hubs. Keys are new (not in the
-// locale files), so the English text below is what every language shows.
+// The homepage leads with one product: the Pre/Post Results Builder for school
+// counselors (decision D-013, docs/research/decision-log.md). The rest is a fixed,
+// short list topped up from certified tools, never "every certified tool": listing
+// the whole catalogue made the page ~250px taller on mobile per certified tool.
+// Keys are new (not in the locale files), so the English text below is shown.
 const FEATURED_TOOL_LIMIT = 6;
 const featuredTools = [
   {
-    key: 'shareSafeCheck',
-    slug: 'security/share-safe-check',
-    name: 'Share-Safe File Check',
-    description: 'See the location, names, earlier revisions, comments and tokens a photo, PDF, Office file or HAR log carries, then download a cleaned copy that is re-checked.',
+    key: 'prePostResults',
+    slug: 'education/pre-post-results',
+    name: 'Pre/Post Results Builder',
+    description: 'Paste the before and after answers from a counseling lesson or small group and get matched-student results by objective, a chart and a summary paragraph. Nothing is uploaded.',
+    category: 'education',
+    icon: 'trending-up'
+  },
+  {
+    key: 'rlsproofHome',
+    slug: 'security/rlsproof',
+    name: 'RLSProof',
+    description: 'Check a Supabase schema for tables and views that anyone with the public key can read or change.',
     category: 'security',
     icon: 'shield'
-  },
-  {
-    key: 'pdfRedactShare',
-    slug: 'pdf/redact',
-    name: 'PDF Redact & PII Check',
-    description: 'Find emails, phone numbers and IBAN-like strings in a PDF and black out what should not leave with it.',
-    category: 'pdf',
-    icon: 'file-text'
-  },
-  {
-    key: 'pdfSplitShare',
-    slug: 'pdf/split',
-    name: 'PDF Splitter',
-    description: 'Send only the pages the recipient needs instead of the whole document.',
-    category: 'pdf',
-    icon: 'file-text'
-  },
-  {
-    key: 'pdfCompressShare',
-    slug: 'pdf/compress',
-    name: 'PDF Compressor',
-    description: 'Get a PDF under an email or upload size limit, with the before and after size shown.',
-    category: 'pdf',
-    icon: 'file-text'
-  },
-  {
-    key: 'imageCompressShare',
-    slug: 'image/compress',
-    name: 'Image Compressor',
-    description: 'Shrink photos and screenshots before attaching or uploading them.',
-    category: 'image',
-    icon: 'image'
-  },
-  {
-    key: 'pdfMergeShare',
-    slug: 'pdf/merge',
-    name: 'PDF Merger',
-    description: 'Combine scans and attachments into one file in the order you choose.',
-    category: 'pdf',
-    icon: 'file-text'
   }
 ];
 
 const categoryPopularTools = {
-  'pdf-tools': [
-    { key: 'pdfMerge', label: 'PDF Merge', slug: 'pdf/merge' },
-    { key: 'pdfCompress', label: 'Compress PDF', slug: 'pdf/compress' },
-    { key: 'pdfToJpg', label: 'PDF to JPG', slug: 'pdf/pdf-to-jpg' }
-  ],
-  'image-tools': [
-    { key: 'imageCompress', label: 'Image Compress', slug: 'image/compress' },
-    { key: 'imageResize', label: 'Image Resize', slug: 'image/image-resizer' },
-    { key: 'imageToWebp', label: 'Image to WebP', slug: 'image/image-to-webp' }
-  ],
   'finance-tools': [
     { key: 'liveExchange', label: 'Live Exchange', slug: 'finance/live-exchange' },
     { key: 'cryptoPrices', label: 'Crypto Prices', slug: 'finance/crypto-prices' },
@@ -264,8 +220,7 @@ const categoryPopularTools = {
   ],
   'social-media-tools': [
     { key: 'utmBuilder', label: 'UTM Builder', slug: 'social/utm-builder' },
-    { key: 'hashtagGenerator', label: 'Hashtag Generator', slug: 'social/hashtag-generator' },
-    { key: 'thumbnail', label: 'Thumbnail', slug: 'social/youtube-thumbnail' }
+    { key: 'hashtagGenerator', label: 'Hashtag Generator', slug: 'social/hashtag-generator' }
   ],
   'productivity-tools': [
     { key: 'pomodoro', label: 'Pomodoro', slug: 'productivity/pomodoro-timer' },
@@ -273,7 +228,7 @@ const categoryPopularTools = {
     { key: 'notes', label: 'Notes', slug: 'productivity/notes' }
   ],
   'data-tools': [
-    { key: 'csvJsonSummary', label: 'CSV/JSON Summary', slug: 'data/csv-json-summarizer' },
+    { key: 'sqlFormatter', label: 'SQL Formatter', slug: 'data/sql-formatter' },
     { key: 'chartBuilder', label: 'Chart Builder', slug: 'data/chart-builder' },
     { key: 'weatherLookup', label: 'Weather Lookup', slug: 'data/weather-lookup' }
   ],
@@ -298,13 +253,13 @@ const blogPosts = [
     minutes: '5 min'
   },
   {
-    key: 'editPdfWithoutAcrobat',
-    title: 'How to edit a PDF without Adobe Acrobat',
-    excerpt: 'Pick a free method by the change you need, from page organisation to annotation, and check the file before you hand it off.',
-    category: 'PDF',
-    href: '/blog/articles/edit-pdf-without-adobe-acrobat-free-methods.html',
-    image: '/images/blog-covers/image-workflow.svg',
-    minutes: '6 min'
+    key: 'ruleOf72',
+    title: 'The rule of 72: estimate how long an investment takes to double',
+    excerpt: 'Where the shortcut comes from, how close it gets to the exact answer, and when not to rely on it.',
+    category: 'Finance',
+    href: '/blog/articles/rule-of-72-estimate-investment-doubling-time.html',
+    image: '/images/blog-covers/workflow-planning.svg',
+    minutes: '5 min'
   },
   {
     key: 'jwtStructure',
@@ -317,30 +272,21 @@ const blogPosts = [
   }
 ];
 
-// Tasks people do before a file leaves their hands. Each step opens a different,
-// working page: the check, the follow-up tool, then the hub with the rest.
+// Each step opens a different, working page.
 const workflowCards = [
   {
-    key: 'contractPdf',
-    title: 'Send a contract or CV as a PDF',
-    description: 'Check it for author names, earlier revisions and comments, black out personal numbers, then send a cleaned copy.',
-    tool: ['Share-Safe File Check', 'security/share-safe-check'],
-    guide: ['Redact personal data', '/tools/pdf/redact/'],
-    category: ['PDF tools', '/categories/pdf-tools.html']
+    key: 'lessonResults',
+    title: 'Report the results of a counseling lesson or small group',
+    description: 'Match the before and after answers by student code, check that every objective has a question, then copy the chart and summary into your results report.',
+    tool: ['Pre/Post Results Builder', 'education/pre-post-results'],
+    guide: ['Write questions that measure an objective', '/tools/education/pre-post-results/#writing-questions'],
+    category: ['All verified tools', '/categories/']
   },
   {
-    key: 'photoLocation',
-    title: 'Post or send a photo without its location',
-    description: 'See whether the photo carries GPS coordinates or a camera serial, remove them without recompressing, then shrink it for upload.',
-    tool: ['Share-Safe File Check', 'security/share-safe-check'],
-    guide: ['Compress the image', '/tools/image/compress/'],
-    category: ['Image tools', '/categories/image-tools.html']
-  },
-  {
-    key: 'supportHar',
-    title: 'Attach a HAR file or log to a support ticket',
-    description: 'Replace cookies, bearer tokens, JWTs and API keys with [REDACTED] before the file reaches a vendor.',
-    tool: ['Share-Safe File Check', 'security/share-safe-check'],
+    key: 'supabaseRelease',
+    title: 'Check a Supabase app before a release',
+    description: 'Find tables and views the public key can reach, then see what a leaked token would expose.',
+    tool: ['RLSProof', 'security/rlsproof'],
     guide: ['What a JWT exposes', '/blog/articles/understanding-json-web-tokens-structure-security.html'],
     category: ['Security tools', '/categories/security-tools.html']
   }
@@ -354,7 +300,7 @@ const workflowCards = [
 
 function iconForCategory(category) {
   const icons = {
-    pdf: 'file-text', image: 'image', finance: 'trending-up', converters: 'repeat',
+    education: 'trending-up', finance: 'trending-up', converters: 'repeat',
     dev: 'code', text: 'type', data: 'database', design: 'palette',
     security: 'shield', productivity: 'zap', calculators: 'calculator', social: 'zap'
   };

@@ -46,8 +46,6 @@ const certifiedCategoryCounts = (manifest.tools || [])
   .filter((tool) => tool.public === true && tool.indexable === true && tool.certificationStatus === 'CERTIFIED')
   .reduce((counts, tool) => counts.set(tool.category, (counts.get(tool.category) || 0) + 1), new Map());
 const categoryByBuiltPath = new Map([
-  ['categories/pdf-tools.html', 'pdf'],
-  ['categories/image-tools.html', 'image'],
   ['categories/finance-tools.html', 'finance'],
   ['categories/developer-tools.html', 'dev'],
   ['categories/text-writing.html', 'text'],
@@ -58,8 +56,6 @@ const categoryByBuiltPath = new Map([
   ['categories/productivity-tools.html', 'productivity'],
   ['categories/data-tools.html', 'data'],
   ['categories/design-tools.html', 'design'],
-  ['tools/pdf/index.html', 'pdf'],
-  ['tools/image/index.html', 'image'],
   ['tools/developer/index.html', 'dev'],
   ['tools/finance/index.html', 'finance']
 ]);
@@ -331,59 +327,7 @@ if (!fs.existsSync(themeAsset)) {
   throw new Error('professional theme stylesheet was not copied to /styles/theme-professional.css');
 }
 
-const backgroundRemover = path.join(distDir, 'tools', 'image', 'background-remover', 'index.html');
-if (!fs.existsSync(backgroundRemover)) throw new Error('built Background Remover route is missing');
-const backgroundRemoverCertified = toolsByBuiltPath.get('tools/image/background-remover/index.html')?.certificationStatus === 'CERTIFIED';
-const backgroundRemoverHtml = fs.readFileSync(backgroundRemover, 'utf8');
-if (backgroundRemoverCertified && !backgroundRemoverHtml.includes(BACKGROUND_REMOVER_V2_HREF)) {
-  throw new Error('Background Remover v2 runtime was not injected into the public tool page');
-}
-if (!backgroundRemoverCertified && backgroundRemoverHtml.includes(BACKGROUND_REMOVER_V2_HREF)) {
-  throw new Error('Background Remover runtime leaked onto an unavailable tool surface');
-}
-if (!fs.existsSync(path.join(distDir, 'js', 'background-remover-v2.js'))) {
-  throw new Error('Background Remover v2 runtime asset is missing from /js/background-remover-v2.js');
-}
+// The Background Remover and PDF Compressor page contracts were removed with those tools
+// on 2026-11-27 (src/server/http/retired-routes.mjs).
 
-const pdfCompressor = path.join(distDir, 'tools', 'pdf', 'compress', 'index.html');
-if (!fs.existsSync(pdfCompressor)) throw new Error('built PDF compressor route is missing');
-const pdfHtml = fs.readFileSync(pdfCompressor, 'utf8');
-if (DEFERRED_STYLE_RE.test(pdfHtml)) {
-  throw new Error('PDF compressor still contains deferred layout styles after finalization');
-}
-if (/https:\/\/fonts\.(?:googleapis|gstatic)\.com/i.test(pdfHtml)) {
-  throw new Error('PDF compressor still contains an external Google Fonts dependency after finalization');
-}
-if (/tool-page-enhancer\.js/i.test(pdfHtml) || /tool-workflow\.css/i.test(pdfHtml)) {
-  throw new Error('PDF compressor still contains the generic tool-page enhancer after finalization');
-}
-if (INTERNAL_ASSET_ORIGIN_RE.test(pdfHtml)) {
-  throw new Error('PDF compressor still contains a canonical-host internal asset URL after finalization');
-}
-INTERNAL_ASSET_ORIGIN_RE.lastIndex = 0;
-
-const pdfMetaContract = path.join(distDir, 'meta', 'pdf', 'compress.json');
-if (!fs.existsSync(pdfMetaContract)) {
-  throw new Error('PDF compressor metadata contract was not published to /meta/pdf/compress.json');
-}
-
-// The shared i18n runtime adds a large generic workflow panel after DOMContentLoaded
-// on legacy tool pages. PDF Compressor already ships its own complete workflow/help
-// surface, so adding the generic panel is redundant and creates a large measurable CLS.
-const i18nPath = path.join(distDir, 'i18n.js');
-if (!fs.existsSync(i18nPath)) throw new Error('built i18n runtime is missing');
-const qualityGuard = "    if (!/\\/tools\\//.test(window.location.pathname)) return;";
-const pdfStableGuard = "    if (/\\/tools\\/pdf\\/compress\\/?$/.test(window.location.pathname)) return;";
-let i18nSource = fs.readFileSync(i18nPath, 'utf8');
-if (!i18nSource.includes(pdfStableGuard)) {
-  if (!i18nSource.includes(qualityGuard)) {
-    throw new Error('tool quality enhancement guard was not found in built i18n runtime');
-  }
-  i18nSource = i18nSource.replace(qualityGuard, `${qualityGuard}\n${pdfStableGuard}`);
-  fs.writeFileSync(i18nPath, i18nSource);
-}
-if (!fs.readFileSync(i18nPath, 'utf8').includes(pdfStableGuard)) {
-  throw new Error('PDF compressor CLS guard was not applied to built i18n runtime');
-}
-
-console.log(`Runtime contracts finalized: removed ${strippedAdSenseScripts} pre-consent AdSense script(s); removed ${strippedStalePrefetches} stale prefetch(es); normalized ${normalizedSourceToolLinks} source-only tool link(s); normalized ${normalizedLegacyThemeReads} legacy theme read(s) and ${normalizedLegacyThemeWrites} write(s); injected professional theme into ${injectedProfessionalThemes} HTML file(s); injected theme bootstrap into ${injectedThemeBootstraps} HTML file(s); injected noindex into ${injectedUnavailableRobots} unavailable tool route(s) and ${injectedEmptyCategoryRobots} empty category route(s); replaced ${injectedUnavailableSurfaces} unavailable tool surface(s); injected Background Remover v2 into ${injectedBackgroundRemoverV2} public route(s); verified ${verifiedManifestToolRoutes} manifest tool route(s); restored ${restoredPdfStyles} PDF compressor stylesheet link(s); removed ${strippedBlockedWebFonts} CSP-blocked web-font stylesheet(s); removed ${strippedPdfEnhancers} generic PDF enhancer script(s); normalized ${normalizedInternalAssetOrigins} internal asset origin(s); published ${publishedMetaContracts} tool metadata contract(s); suppressed redundant PDF quality-panel injection.`);
+console.log(`Runtime contracts finalized: removed ${strippedAdSenseScripts} pre-consent AdSense script(s); removed ${strippedStalePrefetches} stale prefetch(es); normalized ${normalizedSourceToolLinks} source-only tool link(s); normalized ${normalizedLegacyThemeReads} legacy theme read(s) and ${normalizedLegacyThemeWrites} write(s); injected professional theme into ${injectedProfessionalThemes} HTML file(s); injected theme bootstrap into ${injectedThemeBootstraps} HTML file(s); injected noindex into ${injectedUnavailableRobots} unavailable tool route(s) and ${injectedEmptyCategoryRobots} empty category route(s); replaced ${injectedUnavailableSurfaces} unavailable tool surface(s); verified ${verifiedManifestToolRoutes} manifest tool route(s); restored ${restoredPdfStyles} PDF compressor stylesheet link(s); removed ${strippedBlockedWebFonts} CSP-blocked web-font stylesheet(s); removed ${strippedPdfEnhancers} generic PDF enhancer script(s); normalized ${normalizedInternalAssetOrigins} internal asset origin(s); published ${publishedMetaContracts} tool metadata contract(s).`);

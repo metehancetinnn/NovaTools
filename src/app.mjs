@@ -24,8 +24,6 @@ import { toast, loading } from './components/index.mjs';
 
 // Tool registrations
 import { registerFinanceTools } from './tools/finance/index.mjs';
-import { registerPDFTools } from './tools/pdf/index.mjs';
-import { registerImageTools } from './tools/image/index.mjs';
 
 /**
  * Main Application Class
@@ -129,8 +127,6 @@ class NovaToolsApp {
 
     // Register tool categories
     registerFinanceTools(toolController);
-    registerPDFTools(toolController);
-    registerImageTools(toolController);
 
     // Tools registered successfully
   }

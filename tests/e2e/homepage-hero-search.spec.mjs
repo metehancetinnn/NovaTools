@@ -42,9 +42,8 @@ test.describe('Homepage hero and tool search', () => {
       ['epoch', /timestamp/i],
       ['kg to lbs', /unit converter/i],
       ['how old am i', /age/i],
-      ['compress pdf', /pdf/i],
-      ['gps', /share-safe/i],
-      ['redact', /redact/i]
+      ['pre post', /pre\/post/i],
+      ['counselor', /pre\/post/i]
     ]) {
       await input.fill(query);
       const first = page.locator('#homeSearchResults [role="option"]').first();
